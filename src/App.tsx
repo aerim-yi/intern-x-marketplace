@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          hello heroku
+          hello heroku how are you?
         </p>
         <a
           className="App-link"
