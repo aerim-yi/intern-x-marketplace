@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+
 module.exports = function override(config) {
     const fallback = config.resolve.fallback || {};
     Object.assign(fallback, {
@@ -11,6 +12,13 @@ module.exports = function override(config) {
         "url": require.resolve("url"),
         "ethers": require.resolve("ethers")
     })
+    const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+
+    module.exports = function override(config, env) {
+        config.resolve.plugins = config.resolve.plugins.filter(plugin => !(plugin instanceof ModuleScopePlugin));
+
+        return config;
+    };
     config.resolve.fallback = fallback;
     config.plugins = (config.plugins || []).concat([
         new webpack.ProvidePlugin({

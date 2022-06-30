@@ -1,4 +1,5 @@
 import './App.css';
+// import './react-ui-cards/dist';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+        ProductCard;
+      </div>
     </div>
   );
 }
