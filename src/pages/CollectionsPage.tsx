@@ -5,11 +5,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 const CollectionsPage = () => {
     return (
         <Fragment>
-            <HeaderBar /> 
+            <HeaderBar />
             <Container>
                 <Row>
                     <Col>
-                    {/* This is where the cards will be displayed */}
+                        {/* This is where the cards will be displayed */}
                     </Col>
                 </Row>
             </Container>
