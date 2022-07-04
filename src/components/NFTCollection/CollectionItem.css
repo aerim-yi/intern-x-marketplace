@@ -1,4 +1,4 @@
-.expense-item {
+.collection-item {
     display: flex;
     height: 50%;
     flex-direction: row;
@@ -7,10 +7,10 @@
     align-items: left;
     padding: 0.5rem;
     margin: 1rem 0;
-    background-color: #4b4b4b;
+    background-color: #ba5a5a;
   }
   
-  .expense-item__description {
+  .collection-item__description {
     display: flex;
     height: 60%;
     flex-direction: row;
@@ -21,7 +21,7 @@
     flex: 5;
   }
   
-  .expense-item h2 {
+  .collection-item h2 {
     color: #3a3a3a;
     font-size: 1rem;
     flex: 1;
@@ -29,7 +29,7 @@
     color: white;
   }
   
-  .expense-item__price {
+  .collection-item__price {
     font-size: 1rem;
     font-weight: bold;
     color: white;
@@ -40,18 +40,18 @@
   }
   
   @media (min-width: 100) {
-    .expense-item__description {
+    .collection-item__description {
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
       flex: 1;
     }
   
-    .expense-item__description h2 {
+    .collection-item__description h2 {
       font-size: 1.25rem;
     }
   
-    .expense-item__price {
+    .collection-item__price {
       font-size: 1.25rem;
       padding: 0.5rem 1.5rem;
     }

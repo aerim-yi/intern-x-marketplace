@@ -1,35 +1,25 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Expenses from './components/Expenses/Expenses';
+import Collections from './components/NFTCollection/Collection';
 
 const App = () => {
-  const expenses = [
+  const collections = [
     {
       id: 'e1',
       title: 'NFT #1',
       amount: 94.12,
+      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"
     },
     { id: 'e2', 
       title: 'NFT #2', 
-      amount: 799.49},
-    {
-      id: 'e3',
-      title: 'NFT #3',
-      amount: 294.67,
-    },
-    {
-      id: 'e4',
-      title: 'NFT #4',
-      amount: 450,
-    },
+      amount: 799.49, 
+      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
   ];
 
   return (
     <div>
       <h2>Intern NFT Marketplace</h2>
-      <Expenses items={expenses} /> 
-      <Expenses items={expenses} />
+      <Collections items={collections} /> 
     </div>
   );
 }
