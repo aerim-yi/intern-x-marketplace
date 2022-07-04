@@ -1,13 +1,12 @@
-// Get a list of collections
 import { getConfig, CollectionsApi, ListCollectionsResponse } from "@imtbl/core-sdk";
 
-const GetYourCollections = async (pageSize: number): Promise<ListCollectionsResponse> => {
+// Get a list of collections
+// Inspired from Immutable Core SDK documentation
+const GetYourCollections = async (): Promise<ListCollectionsResponse> => {
   const config = getConfig("ropsten");
   const collectionsApi = new CollectionsApi(config.api);
 
-  const response = await collectionsApi.listCollections({
-    pageSize,
-  })
+  const response = await collectionsApi.listCollections()
 
   return response.data;
 };
