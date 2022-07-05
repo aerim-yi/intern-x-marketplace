@@ -1,11 +1,23 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CollectionsPage from './pages/CollectionsPage';
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <CollectionsPage />
+    <div className="App">
+      <header className="App-header">
+        <p>
+          hello heroku how are you?
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
