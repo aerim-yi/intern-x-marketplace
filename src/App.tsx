@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Intern NFT Marketplace</h2>
+      <h2 className = "collections">Intern NFT Marketplace</h2>
       <Collections items={collections} /> 
     </div>
   );

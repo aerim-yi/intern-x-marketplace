@@ -9,7 +9,6 @@
     "@types/bootstrap": "^5.1.12",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.41",
-    "my-ui-lib": "^1.2.2",
     "@types/react": "^18.0.14",
     "@types/react-bootstrap": "^0.32.30",
     "@types/react-dom": "^18.0.5",

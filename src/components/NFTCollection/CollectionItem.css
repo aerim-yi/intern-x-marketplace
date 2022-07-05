@@ -39,7 +39,9 @@
     border-radius: 12px;
   }
   
-  @media (min-width: 100) {
+  /* @media (min-width: 100) { */
+  /* As temporary placeholder */
+  @media (min-width) {
     .collection-item__description {
       flex-direction: row;
       align-items: center;
