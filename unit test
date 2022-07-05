@@ -1,0 +1,14 @@
+nurangiz.aliyeva@Loaners-MacBook-Pro intern-x-marketplace % npm run-script
+Lifecycle scripts included in intern-x-marketplace@0.1.0:
+  start
+    react-app-rewired start
+  test
+    react-app-rewired test
+
+available via `npm run-script`:
+  build
+    react-app-rewired build
+  eject
+    react-scripts eject
+
+nurangiz.aliyeva@Loaners-MacBook-Pro intern-x-marketplace % 
