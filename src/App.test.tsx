@@ -6,7 +6,11 @@ import Card from './components/Card/Card';
 
 test('renders learn react link', () => {
   render(<App />);
+<<<<<<< HEAD
   const linkElement = screen.getByText(/NFT #1/i);
+=======
+  const linkElement = screen.getByText(/NFT1/i);
+>>>>>>> main
   expect(linkElement).toBeInTheDocument();
 });
 
