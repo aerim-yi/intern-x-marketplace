@@ -2,7 +2,7 @@ import { getConfig, CollectionsApi, ListCollectionsResponse } from "@imtbl/core-
 
 // Get a list of collections
 // Inspired from Immutable Core SDK documentation
-const GetYourCollections = async (): Promise<ListCollectionsResponse> => {
+export const getCollections = async (): Promise<ListCollectionsResponse> => {
   const config = getConfig("ropsten");
   const collectionsApi = new CollectionsApi(config.api);
 
@@ -10,5 +10,3 @@ const GetYourCollections = async (): Promise<ListCollectionsResponse> => {
 
   return response.data;
 };
-
-export default GetYourCollections
