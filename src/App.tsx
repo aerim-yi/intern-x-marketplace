@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import Collections from './components/NFTCollection/Collection';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CollectionsPage from './pages/CollectionsPage';
+import { NavBar } from "./components/NavBar/navbar";
 
 const App = () => {
   const collections = [
@@ -17,12 +17,23 @@ const App = () => {
       amount: 799.49, 
       url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
   ];
+
+  const navbarinfo = [
+    {
+      id: 'n1',
+      title: 'Link Wallet',
+      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"
+    },
+    { id: 'n2', 
+      title: 'See Assets', 
+      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
+  ];
   
   return (
     <div>
-      <h2 className = "collections">Intern NFT Marketplace</h2>
-      <Collections items={collections} /> 
       <CollectionsPage />
+      <NavBar/>
+      <Collections items={collections} /> 
     </div>
   );
 }
