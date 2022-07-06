@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Collections from './components/NFTCollection/Collection';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CollectionsPage from './pages/CollectionsPage';
 
 const App = () => {
   const collections = [
@@ -20,6 +22,7 @@ const App = () => {
     <div>
       <h2 className = "collections">Intern NFT Marketplace</h2>
       <Collections items={collections} /> 
+      <CollectionsPage />
     </div>
   );
 }
