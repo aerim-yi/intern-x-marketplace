@@ -17,7 +17,7 @@ const App = () => {
       amount: 799.49, 
       url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
   ];
-
+  
   return (
     <div>
       <h2 className = "collections">Intern NFT Marketplace</h2>
