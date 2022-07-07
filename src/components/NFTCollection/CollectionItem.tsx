@@ -1,21 +1,20 @@
 import React from 'react';
 import Card from '../Card/Card';
-import './CollectionItem.css';
+import './Collection.css';
+import { Button } from 'react-bootstrap'
 
 interface Props {
-  title: string;
-  amount: number;
+  name: string | null | undefined;
   url: string;
 }
 
 const CollectionItem = (props: Props) => {
   return (
-    <Card className='collection-item'>
-      <div className='collection-item__description'>
-        <div><img alt="" src={props.url} /></div>
-        <h2>{props.title}</h2>
-        <div className='collection-item__price'>{props.amount} ETH</div>
-      </div>
+    <Card className="collections">
+      <img alt="" src={props.url} />
+      <h5>{props.name}</h5>
+      <p>Sales Price: 10.80 ETH</p>
+      <Button variant="info">Buy Now</Button>
     </Card>
   );
 }

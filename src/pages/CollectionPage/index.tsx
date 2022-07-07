@@ -12,10 +12,10 @@ const CollectionsPage = () => {
 
     useEffect(() => {
         getCollections().then((response) => {
-            console.log(response)
             setCollections(response.result)
         })
     }, [])
+
     return (
         <>
             <HeaderBar />
