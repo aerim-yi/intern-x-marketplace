@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CollectionsPage from './pages/CollectionPage';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,7 +11,7 @@ const App = () => {
         <Route exact path="/">
           <CollectionsPage />
         </Route>
-        <Route path="/collection/:collectionId">
+        <Route path="/collection/:id">
           <OrderPage />
         </Route>
       </Switch>

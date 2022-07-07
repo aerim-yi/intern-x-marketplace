@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap";
 
 interface Params {
-    collectionId: string
+    id: string
 }
 
 const OrderPage = () => {
     const params = useParams<Params>();
-    console.log(params.collectionId)
-    //  Will use collectionId to call orders API
+    console.log(params.id)
+    //  Will use collection id to call orders API
     
     return (
         <>

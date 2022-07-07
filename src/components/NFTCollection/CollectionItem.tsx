@@ -12,8 +12,8 @@ const CollectionItem = (props: Props) => {
   return (
     <Card className='collection-item'>
       <div className='collection-item__description'>
+        <div><img alt="" src={props.url} /></div>
         <h2>{props.title}</h2>
-        <div><img alt="" src={props.url}/></div>
         <div className='collection-item__price'>{props.amount} ETH</div>
       </div>
     </Card>
