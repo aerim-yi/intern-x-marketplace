@@ -2,7 +2,11 @@ import CollectionItem from './CollectionItem';
 import Card from '../Card/Card';
 import './Collection.css';
 
-const Collections = (props: any) => {
+interface CollectionsProps {
+  items: {title: string; amount: number; url: string;}[]
+}
+
+const Collections = (props: CollectionsProps) => {
   return (
     <Card className="collections">
       <CollectionItem

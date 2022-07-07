@@ -2,7 +2,7 @@ import React from 'react';
 import Collections from './components/NFTCollection/Collection';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CollectionsPage from './pages/CollectionsPage';
-import { NavBar } from "./components/NavBar/navbar";
+import NavBar from './components/NavBar/NavBar'
 
 const App = () => {
   const collections = [
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <div>
       <CollectionsPage />
-      <NavBar/>
+      <NavBar />
       <Collections items={collections} /> 
     </div>
   );
