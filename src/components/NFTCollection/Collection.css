@@ -1,10 +1,15 @@
 .collections {
-    flex-direction: row;
-    flex: 5;
-    padding: 2rem;
-    background-color: rgb(133, 132, 132);
-    text-emphasis-color: white;
-    margin: 2rem auto;
-    width: 20rem;
-    max-width: 95%;
-  }
+  padding: 2rem;
+  background-color: rgb(133, 132, 132);
+  margin: 2rem auto;
+  width: 20rem;
+  max-width: 95%;
+  min-height: 95%;
+}
+
+.collections img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
