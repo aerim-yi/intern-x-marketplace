@@ -18,17 +18,6 @@ const App = () => {
       url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
   ];
 
-  const navbarinfo = [
-    {
-      id: 'n1',
-      title: 'Link Wallet',
-      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"
-    },
-    { id: 'n2', 
-      title: 'See Assets', 
-      url: "https://media.giphy.com/media/qISaMW1xwmvNS/giphy.gif"},
-  ];
-  
   return (
     <div>
       <CollectionsPage />

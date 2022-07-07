@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CollectionItem from './CollectionItem';
 import Card from '../Card/Card';
 import './Collection.css';

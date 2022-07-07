@@ -8,7 +8,7 @@ const useWalletConnect = () => {
 
     setTimeout(() => {
       setButtonText('Connected to Wallet!');
-    }, 1000); // change text back after 1 second
+    }, 1000); // change text back after 1 second; later this will depend on API call success or failure of wallet log-in
   }
 
   return (
