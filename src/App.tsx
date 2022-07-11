@@ -1,6 +1,7 @@
 import React from 'react';
 import CollectionsPage from './pages/CollectionPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/NavBar/NavBar'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import OrderPage from './pages/OrderPage';
 

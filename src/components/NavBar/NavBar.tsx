@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import useWalletConnect from './ConnectToWallet';
+import useWalletConnect from "./ConnectToWallet"
 import './NavBar.css';  
 
 const NavBar = () => {

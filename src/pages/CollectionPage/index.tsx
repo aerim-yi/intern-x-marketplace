@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import { Collection } from "@imtbl/core-sdk";
 import HeaderBar from "../../components/HeaderBar/HeaderBar"
-import WalletPage from "../../components/Wallet/WalletLink";
 import NavBar from "../../components/NavBar/NavBar"
 import { getCollections } from "../../api/collections-api";
 import { Link } from "react-router-dom";
@@ -22,7 +21,6 @@ const CollectionsPage = () => {
         <>
             <HeaderBar />
             <NavBar />
-            <WalletPage />
             <Container>
                 <Row>
                     {!!collections.length && collections.map((item: Collection, index) => {
