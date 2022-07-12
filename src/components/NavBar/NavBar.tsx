@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
-import useWalletConnect from "./ReflectWalletState";
 import './NavBar.css';  
-import ReflectWalletState from "./ReflectWalletState";
+import Wallet from "./Wallet";
 import {useEffect, useState} from "react";
 
 const NavBar = () => {
@@ -11,7 +10,7 @@ const NavBar = () => {
           Marketplace
         </NavLink>
           {/* later replace with link to wallet connection */}
-        <div>{ReflectWalletState()}</div>
+        <div><Wallet /></div>
         <NavLink to="/CollectionsPage">
           View Assets
         </NavLink>
