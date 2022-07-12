@@ -8,14 +8,14 @@ interface Props {
     src: string;
 }
 
-const AssetCard = (props: Props) => {
+const AssetCard = ({ collectionName, itemName, src }: Props) => {
     return (
         <Card>
-            <Card.Img className='cardImg' variant="top" src={props.src} />
+            <Card.Img className='cardImg' variant="top" src={src} data-testid="assetCardImg" />
             <Card.Body>
-                <Card.Title>{props.itemName}</Card.Title>
-                <Card.Text>
-                    {props.collectionName}
+                <Card.Title data-testid="assetCardName">{itemName}</Card.Title>
+                <Card.Text data-testid="assetCardCollectionName">
+                    {collectionName}
                 </Card.Text>
             </Card.Body>
         </Card>

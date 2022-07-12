@@ -8,15 +8,12 @@ import placeholderImg from '../../asset/placehoderImg.jpg'
 
 const AssetPage = () => {
     const walletAddress = localStorage.getItem('WALLET_ADDRESS') || ''
-    const [userAssets, setUserAssets] = useState<Asset[]>([]);
-    const [noAssets, setNoAssets] = useState(false)
+    const [userAssets, setUserAssets] = useState<Asset[]>();
+    const noAssets = userAssets && userAssets.length === 0;
 
     useEffect(() => {
         getUserAssets(walletAddress).then((response) => {
             setUserAssets(response.result)
-            if (!response.result.length) {
-                setNoAssets(true)
-            }
         })
     }, [])
 
@@ -25,18 +22,16 @@ const AssetPage = () => {
             <HeaderBar />
             <Container>
                 <Row>
-                    {!!walletAddress &&
+                    {walletAddress &&
                         <>
-                            {!!userAssets.length && userAssets.map((item: Asset, index) => {
-                                return (
-                                    <>
-                                        <Col xs={12} sm={6} md={4} key={index} data-testid="assetCard">
-                                            <AssetCard src={item.image_url || placeholderImg} collectionName={item.collection.name} itemName={item.name} />
-                                        </Col>
-                                    </>
-                                )
-                            })}
-                            {!userAssets.length && !noAssets && <h1>Loading...</h1>}
+                            {userAssets && userAssets.map((item: Asset, index) => (
+                                <>
+                                    <Col xs={12} sm={6} md={4} key={index} data-testid="assetCard">
+                                        <AssetCard src={item.image_url || placeholderImg} collectionName={item.collection.name} itemName={item.name} />
+                                    </Col>
+                                </>
+                            ))}
+                            {!userAssets && <h1>Loading...</h1>}
                             {noAssets && <h1>No assets to show</h1>}
                         </>}
                     {!walletAddress && <h1>Connect the wallet first!</h1>}
