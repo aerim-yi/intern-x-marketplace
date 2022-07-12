@@ -3,6 +3,8 @@ import HeaderBar from '../../components/HeaderBar/HeaderBar';
 import { Container, Row, Col } from 'react-bootstrap'
 import { getUserAssets } from '../../api/assets-api';
 import { Asset } from '@imtbl/core-sdk'
+import AssetCard from '../../components/Card/AssetCard'
+import placeholderImg from '../../asset/placehoderImg.jpg'
 
 const AssetPage = () => {
     const walletAddress = localStorage.getItem('WALLET_ADDRESS') || ''
@@ -28,14 +30,13 @@ const AssetPage = () => {
                             {!!userAssets.length && userAssets.map((item: Asset, index) => {
                                 return (
                                     <>
-                                        <h3>ASSETS will be displayed here</h3>
-                                        <Col xs={12} sm={6} md={4} key={index}>
-                                            {/* Asset cards will be displayed here */}
+                                        <Col xs={12} sm={6} md={4} key={index} data-testid="assetCard">
+                                            <AssetCard src={item.image_url || placeholderImg} collectionName={item.collection.name} itemName={item.name} />
                                         </Col>
                                     </>
                                 )
                             })}
-                            {!userAssets.length && !noAssets && <h1>loading...</h1>}
+                            {!userAssets.length && !noAssets && <h1>Loading...</h1>}
                             {noAssets && <h1>No assets to show</h1>}
                         </>}
                     {!walletAddress && <h1>Connect the wallet first!</h1>}
