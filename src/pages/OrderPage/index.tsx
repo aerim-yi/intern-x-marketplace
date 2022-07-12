@@ -33,7 +33,7 @@ const OrderPage = () => {
                 <Row>
                     {!!orders.length && orders.map((item: Order, index) => {
                         return (
-                            <Col xs={12} sm={6} md={4} key={index}>
+                            <Col xs={12} sm={6} md={4} key={index} data-testid="orderCard">
                                 <CollectionItem url={item.sell.data.properties?.image_url || placeholderImg}
                                     name={item.sell.data.properties?.name} />
                             </Col>
