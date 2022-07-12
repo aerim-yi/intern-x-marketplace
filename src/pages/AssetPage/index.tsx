@@ -25,11 +25,9 @@ const AssetPage = () => {
                     {walletAddress &&
                         <>
                             {userAssets && userAssets.map((item: Asset, index) => (
-                                <>
-                                    <Col xs={12} sm={6} md={4} key={index} data-testid="assetCard">
-                                        <AssetCard src={item.image_url || placeholderImg} collectionName={item.collection.name} itemName={item.name} />
-                                    </Col>
-                                </>
+                                <Col xs={12} sm={6} md={4} key={index} data-testid="assetCard">
+                                    <AssetCard src={item.image_url || placeholderImg} collectionName={item.collection.name} itemName={item.name} />
+                                </Col>
                             ))}
                             {!userAssets && <h1>Loading...</h1>}
                             {noAssets && <h1>No assets to show</h1>}
