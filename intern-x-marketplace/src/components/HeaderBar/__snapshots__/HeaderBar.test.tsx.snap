@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar component match snapshot 1`] = `
+<div>
+  <nav
+    class="navbar navbar-expand navbar-dark bg-dark"
+  >
+    <div
+      class="container"
+    >
+      <a
+        class="navbar-brand"
+        href="#home"
+      >
+        Intern X Marketplace
+      </a>
+    </div>
+  </nav>
+</div>
+`;
