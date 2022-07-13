@@ -41,7 +41,8 @@ export const OrderPage = () => {
                                 <CollectionItem
                                     url={item.sell.data.properties?.image_url || placeholderImg}
                                     name={item.sell.data.properties?.name}
-                                    price={res} />
+                                    price={res}
+                                    orderId={String(item.order_id)} />
                             </Col>
                         )
                     })}
