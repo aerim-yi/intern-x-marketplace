@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.css';
 import CollectionsPage from './pages/CollectionPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { CollectionsPage } from './pages/CollectionPage';
 import NavBar from './components/NavBar/NavBar'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import OrderPage from './pages/OrderPage';
+import { OrderPage } from './pages/OrderPage';
+import { AssetPage } from './pages/AssetPage';
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
         </Route>
         <Route path="/collection/:id">
           <OrderPage />
+        </Route>
+        <Route path="/asset">
+          <AssetPage />
         </Route>
       </Switch>
     </Router>
