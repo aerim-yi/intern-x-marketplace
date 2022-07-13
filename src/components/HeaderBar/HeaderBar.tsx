@@ -1,6 +1,6 @@
 import { Navbar, Container } from 'react-bootstrap';
 
-const HeaderBar = () => {
+export const HeaderBar = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -9,5 +9,3 @@ const HeaderBar = () => {
         </Navbar>
     )
 }
-
-export default HeaderBar

@@ -8,18 +8,16 @@ interface Props {
     src: string;
 }
 
-const AssetCard = ({ collectionName, itemName, src }: Props) => {
+export const AssetCard = ({ collectionName, itemName, src }: Props) => {
     return (
         <Card>
-            <Card.Img className='cardImg' variant="top" src={src} data-testid="assetCardImg" />
+            <Card.Img className='cardImg' variant="top" src={src} data-testid="AssetCard_Img" />
             <Card.Body>
-                <Card.Title data-testid="assetCardName">{itemName}</Card.Title>
-                <Card.Text data-testid="assetCardCollectionName">
+                <Card.Title data-testid="AssetCard_Name">{itemName}</Card.Title>
+                <Card.Text data-testid="AssetCard_CollectionName">
                     {collectionName}
                 </Card.Text>
             </Card.Body>
         </Card>
     );
 }
-
-export default AssetCard;

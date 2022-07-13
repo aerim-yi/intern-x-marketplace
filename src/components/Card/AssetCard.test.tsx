@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import AssetCard from './AssetCard'
+import { AssetCard } from './AssetCard'
 
 const testProps = {
     collectionName: 'collectionName',
@@ -8,7 +8,7 @@ const testProps = {
 }
 
 describe('AssetCard component', () => {
-    test.only('match snapshot', () => {
+    test('match snapshot', () => {
         const { container } = render(
             <AssetCard
                 collectionName={testProps.collectionName}

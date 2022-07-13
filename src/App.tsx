@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CollectionsPage from './pages/CollectionPage';
+import { CollectionsPage } from './pages/CollectionPage';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import OrderPage from './pages/OrderPage';
-import AssetPage from './pages/AssetPage';
+import { OrderPage } from './pages/OrderPage';
+import { AssetPage } from './pages/AssetPage';
 
 const App = () => {
   return (

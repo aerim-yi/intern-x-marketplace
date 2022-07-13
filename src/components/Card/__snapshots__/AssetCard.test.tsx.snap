@@ -7,7 +7,7 @@ exports[`AssetCard component match snapshot 1`] = `
   >
     <img
       class="card-img-top cardImg"
-      data-testid="assetCardImg"
+      data-testid="AssetCard_Img"
       src="http.test.com"
     />
     <div
@@ -15,13 +15,13 @@ exports[`AssetCard component match snapshot 1`] = `
     >
       <div
         class="card-title h5"
-        data-testid="assetCardName"
+        data-testid="AssetCard_Name"
       >
         itemName
       </div>
       <p
         class="card-text"
-        data-testid="assetCardCollectionName"
+        data-testid="AssetCard_CollectionName"
       >
         collectionName
       </p>

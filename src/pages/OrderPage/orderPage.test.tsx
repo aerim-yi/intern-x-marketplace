@@ -1,8 +1,9 @@
-import OrderPage from '.';
+import { OrderPage } from '.';
 import { MemoryRouter } from 'react-router-dom';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { getOrders } from '../../api/orders-api';
 
-const testData = {
+const orderData = {
     result: [{
         sell: {
             data: {
@@ -16,11 +17,15 @@ const testData = {
     }]
 }
 
-jest.mock('../../api/orders-api', () => ({
-    getOrders: () => Promise.resolve(testData)
-}));
+jest.mock('../../api/orders-api')
+
+
 
 describe('Order page', () => {
+    beforeEach(() => {
+        (getOrders as jest.Mock).mockResolvedValue(orderData);
+    })
+
     test('renders cards if request succeeds', async () => {
         render(<MemoryRouter><OrderPage /></MemoryRouter>)
 
@@ -29,14 +34,13 @@ describe('Order page', () => {
         await waitForElementToBeRemoved(loadingElement)
 
         // Get test ids
-        const orderCardElements = screen.getAllByTestId('orderCard');
-        const orderCardName = screen.getByTestId('orderCardName');
-        const orderCardImg = screen.getByTestId('orderCardImg');
+        const orderCardElements = screen.getAllByTestId('CollectionItem');
+        const orderCardName = screen.getByTestId('CollectionItem_Name');
+        const orderCardImg = screen.getByTestId('CollectionItem_Img');
 
-        expect(orderCardElements).not.toHaveLength(0);
-        expect(orderCardName).toHaveTextContent(testData.result[0].sell.data.properties.name);
-        expect(orderCardImg).toHaveAttribute('src', testData.result[0].sell.data.properties.image_url);
-
+        expect(getOrders).toHaveBeenCalled()
+        expect(orderCardElements).toHaveLength(1);
+        expect(orderCardName).toHaveTextContent(orderData.result[0].sell.data.properties.name);
+        expect(orderCardImg).toHaveAttribute('src', orderData.result[0].sell.data.properties.image_url);
     })
-
 })

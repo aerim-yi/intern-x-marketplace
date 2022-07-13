@@ -1,8 +1,9 @@
-import AssetPage from './index';
+import { AssetPage } from './index';
 import { MemoryRouter } from 'react-router-dom';
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { getUserAssets } from '../../api/assets-api';
 
-const testData = {
+const assetData = {
     result: [{
         image_url: 'img',
         collection: {
@@ -12,13 +13,12 @@ const testData = {
     }]
 }
 
-jest.mock('../../api/assets-api', () => ({
-    getUserAssets: () => Promise.resolve(testData)
-}));
+jest.mock('../../api/assets-api');
 
 describe('Asset page', () => {
     beforeEach(() => {
-        window.localStorage.setItem('WALLET_ADDRESS', 'address')
+        window.localStorage.setItem('WALLET_ADDRESS', 'address');
+        (getUserAssets as jest.Mock).mockResolvedValue(assetData);
     });
 
     test('renders cards if request succeeds', async () => {
@@ -29,12 +29,13 @@ describe('Asset page', () => {
         await waitForElementToBeRemoved(loadingElement)
 
         // Get test ids
-        const assetCardElements = screen.getAllByTestId('assetCard');
-        const assetCardName = screen.getByTestId('assetCardName');
-        const assetCardCollectionName = screen.getByTestId('assetCardCollectionName');
+        const assetCardElements = screen.getAllByTestId('AssetCard');
+        const assetCardName = screen.getByTestId('AssetCard_Name');
+        const assetCardCollectionName = screen.getByTestId('AssetCard_CollectionName');
 
-        expect(assetCardElements).not.toHaveLength(0);
-        expect(assetCardName).toHaveTextContent(testData.result[0].name);
-        expect(assetCardCollectionName).toHaveTextContent(testData.result[0].collection.name);
+        expect(getUserAssets).toHaveBeenCalled()
+        expect(assetCardElements).toHaveLength(1);
+        expect(assetCardName).toHaveTextContent(assetData.result[0].name);
+        expect(assetCardCollectionName).toHaveTextContent(assetData.result[0].collection.name);
     })
 })
