@@ -1,33 +1,29 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ETHTokenType,
   ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
 import "./NavBar.css"
-import { WalletContext } from './WalletContext';
 
-// const enum URLs {
-//   WALLET_ADDRESS = "WALLET_ADDRESS",
-//   STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
-//   LINK_URL = "https://link.ropsten.x.immutable.com",
-//   API_URL = "https://api.ropsten.x.immutable.com/v1",
-//   ETH_NETWORK = "ETH_NETWORK",
-// }
+const enum URLs {
+  WALLET_ADDRESS = "WALLET_ADDRESS",
+  STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
+  LINK_URL = "https://link.ropsten.x.immutable.com",
+  API_URL = "https://api.ropsten.x.immutable.com/v1",
+  ETH_NETWORK = "ETH_NETWORK",
+}
 
 const Wallet : React.FC = () => {
+  const link = new Link(URLs.LINK_URL);
 
-  const value = useContext(WalletContext)
-
-  // const link = new Link(URLs.LINK_URL);
-
-  // const [walletAddress, setWalletAddress] = useState(
-  //   localStorage.WALLET_ADDRESS
-  // );
-  // const [ethNetwork, setEthNetwork] = useState(localStorage.ETH_NETWORK);
-  // const [providerPreference, setProviderPreference] = useState(
-  //   localStorage.PROVIDER_PREFERENCE
-  // );
+  const [walletAddress, setWalletAddress] = useState(
+    localStorage.WALLET_ADDRESS
+  );
+  const [ethNetwork, setEthNetwork] = useState(localStorage.ETH_NETWORK);
+  const [providerPreference, setProviderPreference] = useState(
+    localStorage.PROVIDER_PREFERENCE
+  );
 
   async function login() {
     const { address, starkPublicKey, ethNetwork } = await link.setup({});
