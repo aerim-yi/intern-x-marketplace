@@ -10,7 +10,7 @@ exports[`NavBar component match snapshot 1`] = `
     >
       <a
         class="navbar-brand"
-        href="#home"
+        href="/"
       >
         Intern X Marketplace
       </a>

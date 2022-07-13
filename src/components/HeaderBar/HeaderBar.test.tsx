@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import HeaderBar from './HeaderBar'
+import { HeaderBar } from './HeaderBar'
 
 describe('NavBar component', () => {
     test('match snapshot', () => {
