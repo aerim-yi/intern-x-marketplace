@@ -7,6 +7,7 @@ import { getOrders } from '../../api/orders-api'
 import { Order } from '@imtbl/core-sdk'
 import placeholderImg from '../../asset/placehoderImg.jpg'
 import CollectionItem from "../../components/NFTCollection/CollectionItem";
+import { utils, BigNumber } from "ethers";
 
 interface Params {
     id: string
@@ -14,16 +15,12 @@ interface Params {
 
 export const OrderPage = () => {
     const params = useParams<Params>();
-    const [orders, setOrders] = useState<Order[]>([])
-    const [noOrders, setNoOrders] = useState(false)
+    const [orders, setOrders] = useState<Order[]>()
+    const noOrders = orders && orders.length === 0;
 
     useEffect(() => {
         getOrders(params.id).then((response) => {
             setOrders(response.result)
-            //  If there is no order lets display a no orders message.
-            if (!response.result.length) {
-                setNoOrders(true)
-            }
         })
     }, [])
 
@@ -33,15 +30,22 @@ export const OrderPage = () => {
             <HeaderBar />
             <Container>
                 <Row>
-                    {!!orders.length && orders.map((item: Order, index) => {
+                    {orders && orders.map((item: Order, index) => {
+                        // Inspired from https://ethereum.stackexchange.com/questions/84004/ethers-formatetherwei-with-max-4-decimal-places
+                        const price = BigNumber.from(item.buy.data.quantity);
+                        let res = utils.formatEther(price);
+                        res = (+res).toFixed(4);
+
                         return (
                             <Col xs={12} sm={6} md={4} key={index} data-testid="CollectionItem">
-                                <CollectionItem url={item.sell.data.properties?.image_url || placeholderImg}
-                                    name={item.sell.data.properties?.name} />
+                                <CollectionItem
+                                    url={item.sell.data.properties?.image_url || placeholderImg}
+                                    name={item.sell.data.properties?.name}
+                                    price={res} />
                             </Col>
                         )
                     })}
-                    {!orders.length && !noOrders && <h1>Loading...</h1>}
+                    {!orders && <h1>Loading...</h1>}
                     {noOrders && <h1>No orders...</h1>}
                 </Row>
             </Container>
