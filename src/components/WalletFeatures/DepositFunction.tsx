@@ -48,7 +48,6 @@ return (
       </>
     ) : (
       <div>
-        placeholder
       </div>
     )}
     </div>

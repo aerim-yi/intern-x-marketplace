@@ -18,6 +18,9 @@ const BalanceFunction : React.FC = () => {
   const link = new Link(URLs.LINK_URL);
 
   const [ethBalance, setEthBalance] = useState({});
+  const [walletAddress, setWalletAddress] = useState(
+    localStorage.WALLET_ADDRESS
+  );
 
    // Get the user balances
    async function listUserBalances() {
@@ -35,14 +38,19 @@ const BalanceFunction : React.FC = () => {
   
 return (
   <div>
-    <div>
+    {walletAddress ? (
+      <>
       <strong>Balance</strong>
-      <div>
         <p>{ethBalance ? `${ethBalance}` : ""}</p>
-      </div>
-    </div>
+      </>
+      ) : (
+        <div>
+        </div>
+    )}
   </div>
   );
 }
+
+
 
 export default BalanceFunction;

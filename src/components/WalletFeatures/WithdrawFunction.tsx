@@ -47,17 +47,24 @@ const WalletFunctions : React.FC = () => {
   
 return (
   <div>
-    <div>
-      <strong>Withdrawal</strong>
-      <div style={{ display: "flex" }}>
-        <button onClick={prepareWithdrawal}>Pepare Withdrawal (0.01)</button>
-      </div>
-      <div style={{ display: "flex" }}>
-        <button onClick={completeWithdrawal}>Complete Withdrawal</button>
-      </div>
+    {walletAddress ? (
+  <>
+    <strong>Withdrawal</strong>
+    <div style={{ display: "flex" }}>
+      <button onClick={prepareWithdrawal}>Pepare Withdrawal (0.01)</button>
     </div>
+    <div style={{ display: "flex" }}>
+      <button onClick={completeWithdrawal}>Complete Withdrawal</button>
+    </div>
+  </>
+  ) : (
+    <div>
+    </div>
+  )}
   </div>
   );
 }
+
+
 
 export default WalletFunctions;
