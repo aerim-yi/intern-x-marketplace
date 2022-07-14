@@ -14,6 +14,17 @@ exports[`NavBar component match snapshot 1`] = `
       >
         Intern X Marketplace
       </a>
+      <div
+        class="walletButtonGroup btn-group"
+        role="group"
+      >
+        <button
+          class="btn btn-outline-info"
+          type="button"
+        >
+          Connect Wallet
+        </button>
+      </div>
     </div>
   </nav>
 </div>
