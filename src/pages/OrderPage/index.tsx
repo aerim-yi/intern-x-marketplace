@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
 import { useParams } from "react-router-dom"
-import NavBar from "../../components/NavBar/NavBar"
 import { Container, Row, Col } from "react-bootstrap";
 import { getOrders } from '../../api/orders-api'
 import { Order } from '@imtbl/core-sdk'
-import placeholderImg from '../../asset/placehoderImg.jpg'
+import placeholderImg from '../../asset/placeholderImg.jpg'
 import CollectionItem from "../../components/NFTCollection/CollectionItem";
 import { utils, BigNumber } from "ethers";
 
@@ -14,19 +13,18 @@ interface Params {
 }
 
 export const OrderPage = () => {
-    const params = useParams<Params>();
+    const { id } = useParams<Params>();
     const [orders, setOrders] = useState<Order[]>()
     const noOrders = orders && orders.length === 0;
 
     useEffect(() => {
-        getOrders(params.id).then((response) => {
+        getOrders(id).then((response) => {
             setOrders(response.result)
         })
     }, [])
 
     return (
         <>
-            <NavBar />
             <HeaderBar />
             <Container>
                 <Row>

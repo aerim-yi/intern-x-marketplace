@@ -18,26 +18,27 @@ const CollectionItem = ({ name, url, price, orderId }: Props) => {
 
   async function buyItem(orderId: string) {
     try {
-      console.log(`orderId: ${orderId}`)
       await link.buy({ orderIds: [orderId] });
     } catch (e) {
       console.log(`link buy error: ${e}`)
     }
-
   }
+
   return (
     <Card className="collections">
-      <img
-        alt=""
-        src={url}
-        data-testid="CollectionItem_Img"
-        // Load placeholder on error: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = placeholderImg;
-        }}
-      />
-      <h5 data-testid="CollectionItem_Name">{name}</h5>
+      <div className="cardWrapper">
+        <img
+          alt=""
+          src={url}
+          data-testid="CollectionItem_Img"
+          // Load placeholder on error: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = placeholderImg;
+          }}
+        />
+      </div>
+      <h5 data-testid="CollectionItem_Name" className="cardText">{name || 'No Title'}</h5>
       <p>Sales Price: {price} ETH</p>
       <Button variant="info" onClick={() => buyItem(orderId)} >Buy Now</Button>
     </Card>

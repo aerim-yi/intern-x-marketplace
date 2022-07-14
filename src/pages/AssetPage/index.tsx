@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { getUserAssets } from '../../api/assets-api';
 import { Asset } from '@imtbl/core-sdk'
 import { AssetCard } from '../../components/Card/AssetCard'
-import placeholderImg from '../../asset/placehoderImg.jpg'
+import placeholderImg from '../../asset/placeholderImg.jpg'
 
 export const AssetPage = () => {
     const walletAddress = localStorage.getItem('WALLET_ADDRESS') || ''
