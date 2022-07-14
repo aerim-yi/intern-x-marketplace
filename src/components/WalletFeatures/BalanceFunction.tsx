@@ -41,7 +41,6 @@ return (
         <>
         <strong>Balance</strong>
           <p>{ethBalance ? `${ethBalance}` : ""}</p>
-          {listUserBalances}
         </>
       ) : (
         <div>
