@@ -1,7 +1,7 @@
-import React from 'react';
-import Card from '../Card/Card';
-import './Collection.css';
-import { Button } from 'react-bootstrap'
+import React from "react";
+import Card from "../Card/Card";
+import "./Collection.css";
+import { Button } from "react-bootstrap";
 
 interface Props {
   name: string | null | undefined;
@@ -17,6 +17,6 @@ const CollectionItem = (props: Props) => {
       <Button variant="info">Buy Now</Button>
     </Card>
   );
-}
+};
 
 export default CollectionItem;

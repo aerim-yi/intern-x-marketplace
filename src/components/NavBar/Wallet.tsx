@@ -1,10 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {
-  ETHTokenType,
-  ImmutableXClient,
-  Link
-} from "@imtbl/imx-sdk";
-import "./NavBar.css"
+import React, { useEffect, useState } from "react";
+import { ETHTokenType, ImmutableXClient, Link } from "@imtbl/imx-sdk";
+import "./NavBar.css";
 
 const enum URLs {
   WALLET_ADDRESS = "WALLET_ADDRESS",
@@ -14,7 +10,7 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
-const Wallet : React.FC = () => {
+const Wallet: React.FC = () => {
   const link = new Link(URLs.LINK_URL);
 
   const [walletAddress, setWalletAddress] = useState(
@@ -41,41 +37,43 @@ const Wallet : React.FC = () => {
     setEthNetwork(localStorage.ETH_NETWORK);
     setProviderPreference(localStorage.PROVIDER_PREFERENCE);
   }
-  
-return (
-  <div>
-    {walletAddress ? (
-      <>
-        <button onClick={logout} className = "location">Disconnect</button>
-        <p>
-          <strong>Wallet address: </strong>
-          {walletAddress}
-        </p>
-        <p>
-          <strong>Eth network: </strong>
-          {ethNetwork}
-        </p>
-        <p>
-          <strong>Provider reference: </strong>
-          {providerPreference}
-        </p>
+
+  return (
+    <div>
+      {walletAddress ? (
+        <>
+          <button onClick={logout} className="location">
+            Disconnect
+          </button>
+          <p>
+            <strong>Wallet address: </strong>
+            {walletAddress}
+          </p>
+          <p>
+            <strong>Eth network: </strong>
+            {ethNetwork}
+          </p>
+          <p>
+            <strong>Provider reference: </strong>
+            {providerPreference}
+          </p>
+          <div
+            style={{
+              display: "flex",
+            }}
+          ></div>
+        </>
+      ) : (
         <div
           style={{
             display: "flex",
           }}
         >
+          <button onClick={login}>Connect</button>
         </div>
-      </>
-    ) : (
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <button onClick={login}>Connect</button>
-      </div>
-    )}
-  </div>
-)};
+      )}
+    </div>
+  );
+};
 
 export default Wallet;

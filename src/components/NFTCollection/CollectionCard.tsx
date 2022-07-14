@@ -1,10 +1,10 @@
-import React from 'react';
-import Card from '../Card/Card';
-import './Collection.css';
+import React from "react";
+import Card from "../Card/Card";
+import "./Collection.css";
 
 interface Props {
-  url: string,
-  name: string
+  url: string;
+  name: string;
 }
 
 const CollectionCard = (props: Props) => {
@@ -14,6 +14,6 @@ const CollectionCard = (props: Props) => {
       <h5>{props.name}</h5>
     </Card>
   );
-}
+};
 
 export default CollectionCard;

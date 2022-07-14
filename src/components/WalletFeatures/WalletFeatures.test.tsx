@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import NavBar from "./NavBar";
+import WalletFeatures from "./WalletFeatures";
 import "@testing-library/jest-dom";
 
 // import { wait } from '@testing-library/user-event/dist/utils';
@@ -8,7 +8,7 @@ import "@testing-library/jest-dom";
 test("renders nav bar marketplace text", () => {
   render(
     <Router>
-      <NavBar />
+      <WalletFeatures />
     </Router>
   );
   const linkElement = screen.getByText("Marketplace");
@@ -18,7 +18,7 @@ test("renders nav bar marketplace text", () => {
 test("renders nav bar asset text", async () => {
   render(
     <Router>
-      <NavBar />
+      <WalletFeatures />
     </Router>
   );
   const linkElement = screen.getByText("View Assets");
