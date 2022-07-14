@@ -5,6 +5,7 @@ import {
   Link
 } from "@imtbl/imx-sdk";
 import "./NavBar.css"
+import {useWalletHook} from "./useWallethook"
 
 const enum URLs {
   WALLET_ADDRESS = "WALLET_ADDRESS",
@@ -15,49 +16,25 @@ const enum URLs {
 }
 
 const Wallet : React.FC = () => {
-  const link = new Link(URLs.LINK_URL);
 
-  const [walletAddress, setWalletAddress] = useState(
-    localStorage.WALLET_ADDRESS
-  );
-  const [ethNetwork, setEthNetwork] = useState(localStorage.ETH_NETWORK);
-  const [providerPreference, setProviderPreference] = useState(
-    localStorage.PROVIDER_PREFERENCE
-  );
-
-  async function login() {
-    const { address, starkPublicKey, ethNetwork } = await link.setup({});
-    localStorage.setItem(URLs.WALLET_ADDRESS, address);
-    localStorage.setItem(URLs.STARK_PUBLIC_KEY, starkPublicKey);
-    localStorage.setItem(URLs.ETH_NETWORK, ethNetwork);
-    setWalletAddress(localStorage.WALLET_ADDRESS);
-    setEthNetwork(localStorage.ETH_NETWORK);
-    setProviderPreference(localStorage.PROVIDER_PREFERENCE);
-  }
-
-  function logout() {
-    localStorage.removeItem(URLs.WALLET_ADDRESS);
-    setWalletAddress(localStorage.WALLET_ADDRESS);
-    setEthNetwork(localStorage.ETH_NETWORK);
-    setProviderPreference(localStorage.PROVIDER_PREFERENCE);
-  }
+  const { walletInfo, login, logout,} = useWalletHook();
   
 return (
   <div>
-    {walletAddress ? (
+    {walletInfo.walletAddress ? (
       <>
         <button onClick={logout} className = "location">Disconnect</button>
         <p>
           <strong>Wallet address: </strong>
-          {walletAddress}
+          {walletInfo.walletAddress}
         </p>
         <p>
           <strong>Eth network: </strong>
-          {ethNetwork}
+          {walletInfo.ethNetwork}
         </p>
         <p>
           <strong>Provider reference: </strong>
-          {providerPreference}
+          {walletInfo.providerPreference}
         </p>
         <div
           style={{

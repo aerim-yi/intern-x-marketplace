@@ -10,17 +10,9 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
-const useWallethook = () => {
+const useWalletHook = () => {
   const link = new Link(URLs.LINK_URL);
   const [walletInfo, setWalletInfo] = useState(JSON.parse(localStorage.WALLET_INFO));
-
-  const [walletAddress, setWalletAddress] = useState(
-    localStorage.WALLET_ADDRESS
-  );
-  const [ethNetwork, setEthNetwork] = useState(localStorage.ETH_NETWORK);
-  const [providerPreference, setProviderPreference] = useState(
-    localStorage.PROVIDER_PREFERENCE
-  );
 
   async function login() {
     const walletInfo = await link.setup({});
@@ -30,10 +22,10 @@ const useWallethook = () => {
 
   function logout() {
     localStorage.removeItem(URLs.WALLET_ADDRESS);
-    setWalletAddress(localStorage.WALLET_ADDRESS);
-    setEthNetwork(localStorage.ETH_NETWORK);
-    setProviderPreference(localStorage.PROVIDER_PREFERENCE);
+    setWalletInfo(localStorage.WALLET_INFO)
   }
 
   return { walletInfo, login, logout }
 }
+
+export {useWalletHook};
