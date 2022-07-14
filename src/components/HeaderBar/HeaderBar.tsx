@@ -8,7 +8,7 @@ export const HeaderBar = () => {
     const [walletAddress, setWalletAddress] = useState(localStorage.WALLET_ADDRESS)
     const history = useHistory();
 
-    const linkAddress = 'https://link.ropsten.x.immutable.com'
+    const linkAddress = process.env.REACT_APP_LINKADDRESS
     const link = new Link(linkAddress);
 
     async function login() {
