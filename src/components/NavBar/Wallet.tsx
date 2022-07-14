@@ -34,10 +34,6 @@ const Wallet : React.FC = () => {
             <strong>Eth network: </strong>
             {walletInfo.ethNetwork}
           </p>
-          <p>
-            <strong>Provider reference: </strong>
-            {walletInfo.providerPreference}
-          </p>
           <div
             style={{
               display: "flex",
