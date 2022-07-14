@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ETHTokenType, ImmutableXClient, Link } from "@imtbl/imx-sdk";
+import { ETHTokenType, ImmutableXClient, Link, LinkResults } from "@imtbl/imx-sdk";
 import "./NavBar.css";
 
 const enum URLs {
@@ -12,7 +12,7 @@ const enum URLs {
 
 const useWalletHook = () => {
   const link = new Link(URLs.LINK_URL);
-  const [walletInfo, setWalletInfo] = useState(JSON.parse(localStorage.WALLET_INFO));
+  const [walletInfo, setWalletInfo] = useState< LinkResults.Setup >();
 
   async function login() {
     const walletInfo = await link.setup({});

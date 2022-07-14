@@ -15,44 +15,46 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
+console.log(localStorage.WALLET_INFO)
+
 const Wallet : React.FC = () => {
 
   const { walletInfo, login, logout,} = useWalletHook();
-  
-return (
-  <div>
-    {walletInfo.walletAddress ? (
-      <>
-        <button onClick={logout} className = "location">Disconnect</button>
-        <p>
-          <strong>Wallet address: </strong>
-          {walletInfo.walletAddress}
-        </p>
-        <p>
-          <strong>Eth network: </strong>
-          {walletInfo.ethNetwork}
-        </p>
-        <p>
-          <strong>Provider reference: </strong>
-          {walletInfo.providerPreference}
-        </p>
+
+  return (
+    <div>
+      {walletInfo ? (
+        <>
+          <button onClick={logout} className = "location">Disconnect</button>
+          <p>
+            <strong>Wallet address: </strong>
+            {walletInfo.address}
+          </p>
+          <p>
+            <strong>Eth network: </strong>
+            {walletInfo.ethNetwork}
+          </p>
+          <p>
+            <strong>Provider reference: </strong>
+            {walletInfo.providerPreference}
+          </p>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+          </div>
+        </>
+      ) : (
         <div
           style={{
             display: "flex",
           }}
         >
+          <button onClick={login}>Connect</button>
         </div>
-      </>
-    ) : (
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <button onClick={login}>Connect</button>
-      </div>
-    )}
-  </div>
+      )}
+    </div>
 )};
 
 export default Wallet;
