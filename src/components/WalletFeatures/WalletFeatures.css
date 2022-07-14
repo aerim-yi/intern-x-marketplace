@@ -9,7 +9,7 @@ body {
   height: 100%;
   width: 100%;
   font-size: 16px;
-  color: orange;
+  color: rgb(0, 0, 0);
 }
 
 .location {
@@ -23,5 +23,5 @@ body {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  background-color: rgb(168, 168, 168);
+  background-color: rgb(152, 132, 132);
 }

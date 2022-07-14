@@ -39,13 +39,22 @@ const WalletFunctions : React.FC = () => {
 return (
   <div>
     <div>
+    {walletAddress ? (
+      <>
       <strong>Deposit</strong>
-      <div style={{ display: "flex" }}>
-        <button onClick={deposit}>Deposit (0.5)</button>
+        <div style={{ display: "flex" }}>
+          <button onClick={deposit}>Deposit (0.5)</button>
+        </div>
+      </>
+    ) : (
+      <div>
+        placeholder
       </div>
+    )}
     </div>
   </div>
   );
+  
 }
 
 export default WalletFunctions;
