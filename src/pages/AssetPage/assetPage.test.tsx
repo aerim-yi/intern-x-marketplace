@@ -17,7 +17,7 @@ jest.mock('../../api/assets-api');
 
 describe('Asset page', () => {
     beforeEach(() => {
-        window.localStorage.setItem('WALLET_ADDRESS', 'address');
+        window.localStorage.setItem('WALLET_ADDRESS', JSON.stringify({ 'address': 'hsgjgda' }));
         (getUserAssets as jest.Mock).mockResolvedValue(assetData);
     });
 

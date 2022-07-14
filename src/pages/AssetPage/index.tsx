@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { HeaderBar } from '../../components/HeaderBar/HeaderBar';
 import { Container, Row, Col } from 'react-bootstrap'
 import { getUserAssets } from '../../api/assets-api';
 import { Asset } from '@imtbl/core-sdk'
@@ -7,19 +6,21 @@ import { AssetCard } from '../../components/Card/AssetCard'
 import placeholderImg from '../../asset/placeholderImg.jpg'
 
 export const AssetPage = () => {
-    const walletAddress = localStorage.getItem('WALLET_ADDRESS') || ''
+    const walletAddressString = localStorage.getItem('WALLET_ADDRESS') || ''
+    const walletAddress = walletAddressString && JSON.parse(walletAddressString);
     const [userAssets, setUserAssets] = useState<Asset[]>();
     const noAssets = userAssets && userAssets.length === 0;
 
     useEffect(() => {
-        getUserAssets(walletAddress).then((response) => {
-            setUserAssets(response.result)
-        })
-    }, [])
+        if (walletAddress.address && !userAssets) {
+            getUserAssets(walletAddress.address).then((response) => {
+                setUserAssets(response.result)
+            })
+        }
+    }, [walletAddress])
 
     return (
         <>
-            <HeaderBar />
             <Container>
                 <Row>
                     {walletAddress &&

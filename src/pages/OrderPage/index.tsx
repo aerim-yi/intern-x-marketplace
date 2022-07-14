@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap";
 import { getOrders } from '../../api/orders-api'
@@ -25,7 +24,6 @@ export const OrderPage = () => {
 
     return (
         <>
-            <HeaderBar />
             <Container>
                 <Row>
                     {orders && orders.map((item: Order, index) => {

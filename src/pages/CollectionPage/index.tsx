@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import { Collection } from "@imtbl/core-sdk";
-import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
 import { getCollections } from "../../api/collections-api";
 import { Link } from "react-router-dom";
 import placeholderImg from '../../asset/placeholderImg.jpg';
 import CollectionCard from '../../components/NFTCollection/CollectionCard'
+import Wallet from "../../components/NavBar/Wallet";
 
-export const CollectionsPage = () => {
+interface Props {
+    walletAddress: string | undefined;
+}
+export const CollectionsPage: React.FC<Props> = ({ walletAddress }) => {
     const [collections, setCollections] = useState<Collection[]>([])
 
     useEffect(() => {
@@ -18,7 +21,7 @@ export const CollectionsPage = () => {
 
     return (
         <>
-            <HeaderBar />
+            <Wallet walletAddress={walletAddress} />
             <Container>
                 <Row>
                     {!!collections.length && collections.map((item: Collection, index) => {

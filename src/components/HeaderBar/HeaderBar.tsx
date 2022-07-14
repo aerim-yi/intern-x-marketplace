@@ -1,42 +1,29 @@
-import { useState } from 'react';
-import { Link } from '@imtbl/imx-sdk';
 import { Navbar, Container, ButtonGroup, Button } from 'react-bootstrap';
-import { Link as LinkPage, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
+interface Props {
+    walletAddress: string | undefined;
+    logout: () => void;
+    login: () => void;
+}
 
-export const HeaderBar = () => {
-    const [walletAddress, setWalletAddress] = useState(localStorage.WALLET_ADDRESS)
+export const HeaderBar: React.FC<Props> = ({ login, logout, walletAddress }) => {
     const history = useHistory();
-
-    const linkAddress = process.env.REACT_APP_LINKADDRESS
-    const link = new Link(linkAddress);
-
-    async function login() {
-        const { address, starkPublicKey } = await link.setup({});
-        localStorage.setItem('WALLET_ADDRESS', address);
-        localStorage.setItem('STARK_PUBLIC_KEY', starkPublicKey);
-        setWalletAddress(localStorage.WALLET_ADDRESS);
-    }
-
-    function logout() {
-        localStorage.removeItem('WALLET_ADDRESS');
-        setWalletAddress(localStorage.WALLET_ADDRESS);
-        history.push('/')
-    }
-
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/">Intern X Marketplace</Navbar.Brand>
+                <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }}>
+                    <Navbar.Brand>Intern X Marketplace</Navbar.Brand>
+                </Link>
                 {walletAddress &&
                     <ButtonGroup>
-                        <LinkPage to={'/asset'} style={{ textDecoration: 'none', color: 'black' }}>
+                        <Link to={'/asset'} style={{ textDecoration: 'none', color: 'black' }}>
                             <Button variant="outline-info">Asset</Button>
-                        </LinkPage>
-                        <LinkPage to={'/wallet_management'} style={{ textDecoration: 'none', color: 'black' }}>
+                        </Link>
+                        <Link to={'/wallet_management'} style={{ textDecoration: 'none', color: 'black' }}>
                             <Button variant="outline-info">Wallet</Button>
-                        </LinkPage>
-                        <Button variant="outline-info" onClick={logout}>
+                        </Link>
+                        <Button variant="outline-info" onClick={() => { logout(); history.push('/') }}>
                             Disconnect
                         </Button>
                     </ButtonGroup>
