@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
 import { useParams } from "react-router-dom"
 import NavBar from "../../components/NavBar/NavBar"
+import WalletFeatures from "../../components/WalletFeatures/WalletFeatures";
 import { Container, Row, Col } from "react-bootstrap";
 import { getOrders } from '../../api/orders-api'
 import { Order } from '@imtbl/core-sdk'
@@ -31,6 +32,7 @@ export const OrderPage = () => {
         <>
             <NavBar />
             <HeaderBar />
+            <WalletFeatures />
             <Container>
                 <Row>
                     {!!orders.length && orders.map((item: Order, index) => {

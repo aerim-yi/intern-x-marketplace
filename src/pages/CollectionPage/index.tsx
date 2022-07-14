@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import { Collection } from "@imtbl/core-sdk";
 import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
+import WalletFeatures from "../../components/WalletFeatures/WalletFeatures"
 import NavBar from "../../components/NavBar/NavBar"
 import { getCollections } from "../../api/collections-api";
 import { Link } from "react-router-dom";
@@ -20,6 +21,7 @@ export const CollectionsPage = () => {
     return (
         <>
             <HeaderBar />
+            <WalletFeatures />
             <NavBar />
             <Container>
                 <Row>

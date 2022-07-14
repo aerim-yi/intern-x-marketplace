@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { HeaderBar } from '../../components/HeaderBar/HeaderBar';
 import { Container, Row, Col } from 'react-bootstrap'
+import WalletFeatures from "../../components/WalletFeatures/WalletFeatures"
 import { getUserAssets } from '../../api/assets-api';
 import { Asset } from '@imtbl/core-sdk'
 import { AssetCard } from '../../components/Card/AssetCard'
@@ -20,6 +21,7 @@ export const AssetPage = () => {
     return (
         <>
             <HeaderBar />
+            <WalletFeatures />
             <Container>
                 <Row>
                     {walletAddress &&
