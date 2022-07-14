@@ -10,9 +10,9 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
-
 const useWallethook = () => {
   const link = new Link(URLs.LINK_URL);
+  const [walletInfo, setWalletInfo] = useState(JSON.parse(localStorage.WALLET_INFO));
 
   const [walletAddress, setWalletAddress] = useState(
     localStorage.WALLET_ADDRESS
@@ -23,13 +23,9 @@ const useWallethook = () => {
   );
 
   async function login() {
-    const { address, starkPublicKey, ethNetwork } = await link.setup({});
-    localStorage.setItem(URLs.WALLET_ADDRESS, address);
-    localStorage.setItem(URLs.STARK_PUBLIC_KEY, starkPublicKey);
-    localStorage.setItem(URLs.ETH_NETWORK, ethNetwork);
-    setWalletAddress(localStorage.WALLET_ADDRESS);
-    setEthNetwork(localStorage.ETH_NETWORK);
-    setProviderPreference(localStorage.PROVIDER_PREFERENCE);
+    const walletInfo = await link.setup({});
+    localStorage.setItem("walletInfo", JSON.stringify(walletInfo));
+    setWalletInfo(walletInfo);
   }
 
   function logout() {
@@ -39,5 +35,5 @@ const useWallethook = () => {
     setProviderPreference(localStorage.PROVIDER_PREFERENCE);
   }
 
-  return { walletAddress, ethNetwork, providerPreference, login, logout }
+  return { walletInfo, login, logout }
 }
