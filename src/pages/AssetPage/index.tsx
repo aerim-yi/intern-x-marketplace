@@ -1,30 +1,29 @@
 import { useState, useEffect } from 'react';
-import { HeaderBar } from '../../components/HeaderBar/HeaderBar';
 import { Container, Row, Col } from 'react-bootstrap'
-import WalletFeatures from "../../components/WalletFeatures/WalletFeatures"
 import { getUserAssets } from '../../api/assets-api';
 import { Asset } from '@imtbl/core-sdk'
 import { AssetCard } from '../../components/Card/AssetCard'
-import placeholderImg from '../../asset/placehoderImg.jpg'
+import { useWalletHook } from '../../components/NavBar/useWallethook';
+import placeholderImg from '../../asset/placeholderImg.jpg'
 
 export const AssetPage = () => {
-    const walletAddress = localStorage.getItem('WALLET_ADDRESS') || ''
     const [userAssets, setUserAssets] = useState<Asset[]>();
     const noAssets = userAssets && userAssets.length === 0;
+    const wallet = useWalletHook();
 
     useEffect(() => {
-        getUserAssets(walletAddress).then((response) => {
-            setUserAssets(response.result)
-        })
-    }, [])
+        if (wallet?.walletInfo?.address && !userAssets) {
+            getUserAssets(wallet?.walletInfo?.address).then((response) => {
+                setUserAssets(response.result)
+            })
+        }
+    }, [wallet?.walletInfo?.address])
 
     return (
         <>
-            <HeaderBar />
-            <WalletFeatures />
             <Container>
                 <Row>
-                    {walletAddress &&
+                    {wallet?.walletInfo?.address &&
                         <>
                             {userAssets && userAssets.map((item: Asset, index) => (
                                 <Col xs={12} sm={6} md={4} key={index} data-testid="AssetCard">
@@ -34,7 +33,7 @@ export const AssetPage = () => {
                             {!userAssets && <h1>Loading...</h1>}
                             {noAssets && <h1>No assets to show</h1>}
                         </>}
-                    {!walletAddress && <h1>Connect the wallet first!</h1>}
+                    {!wallet?.walletInfo?.address && <h1>Connect the wallet first!</h1>}
                 </Row>
             </Container>
         </>

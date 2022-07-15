@@ -1,32 +1,25 @@
-import React, {useEffect, useState} from 'react';
-import {
-  ETHTokenType,
-  ImmutableXClient,
-  Link
-} from "@imtbl/imx-sdk";
-import "./NavBar.css"
-import {useWalletHook} from "./useWallethook"
+import { useWalletHook } from "./useWallethook"
 
-const Wallet : React.FC = () => {
-
-  const { walletInfo, login, logout, load } = useWalletHook();
-
-  useEffect(() => {
-    load();
-  }, [walletInfo]);
+const Wallet = () => {
+  const wallet = useWalletHook();
+  const walletAddress = wallet?.walletInfo?.address;
+  const ethNetwork = wallet?.walletInfo?.ethNetwork;
 
   return (
     <div>
-      {walletInfo ? (
+      {walletAddress ? (
         <>
-          <button onClick={logout} className = "location">Disconnect</button>
+          <span>
+            <h3 style={{ marginTop: '20px' }}>
+              <strong>Wallet address: </strong>
+            </h3>
+            <p><strong>{walletAddress}</strong></p>
+          </span>
           <p>
-            <strong>Wallet address: </strong>
-            {walletInfo.address}
-          </p>
-          <p>
-            <strong>Eth network: </strong>
-            {walletInfo.ethNetwork}
+          <h3 style={{ marginTop: '20px' }}>
+              <strong>Eth Network: </strong>
+            </h3>
+            <p><strong>{ethNetwork}</strong></p>
           </p>
           <div
             style={{
@@ -41,10 +34,11 @@ const Wallet : React.FC = () => {
             display: "flex",
           }}
         >
-          <button onClick={login}>Connect</button>
         </div>
-      )}
-    </div>
-)};
+      )
+      }
+    </div >
+  )
+};
 
 export default Wallet;

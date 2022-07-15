@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavBar component match snapshot 1`] = `
+exports[`HeaderBar component match snapshot 1`] = `
 <div>
   <nav
     class="navbar navbar-expand navbar-dark bg-dark"
@@ -9,11 +9,26 @@ exports[`NavBar component match snapshot 1`] = `
       class="container"
     >
       <a
-        class="navbar-brand"
         href="/"
+        style="text-decoration: none; color: black;"
       >
-        Intern X Marketplace
+        <span
+          class="navbar-brand"
+        >
+          Intern X Marketplace
+        </span>
       </a>
+      <div
+        class="walletButtonGroup btn-group"
+        role="group"
+      >
+        <button
+          class="btn btn-outline-info"
+          type="button"
+        >
+          Connect Wallet
+        </button>
+      </div>
     </div>
   </nav>
 </div>

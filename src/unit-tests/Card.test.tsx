@@ -4,6 +4,6 @@ import App from '../App';
 
 test('renders title NFT #1', () => {
     render(<App />);
-    const linkElement = screen.getByText(/Assets/i);
+    const linkElement = screen.getByText(/marketplace/i);
     expect(linkElement).toBeInTheDocument();
   });

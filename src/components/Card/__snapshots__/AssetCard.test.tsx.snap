@@ -3,29 +3,28 @@
 exports[`AssetCard component match snapshot 1`] = `
 <div>
   <div
-    class="card"
+    class="collections card"
   >
-    <img
-      class="card-img-top cardImg"
-      data-testid="AssetCard_Img"
-      src="http.test.com"
-    />
     <div
-      class="card-body"
+      class="cardWrapper"
     >
-      <div
-        class="card-title h5"
-        data-testid="AssetCard_Name"
-      >
-        itemName
-      </div>
-      <p
-        class="card-text"
-        data-testid="AssetCard_CollectionName"
-      >
-        collectionName
-      </p>
+      <img
+        alt=""
+        data-testid="AssetCard_Img"
+        src="http.test.com"
+      />
     </div>
+    <h5
+      class="cardText"
+      data-testid="AssetCard_Name"
+    >
+      itemName
+    </h5>
+    <p
+      data-testid="AssetCard_CollectionName"
+    >
+      collectionName
+    </p>
   </div>
 </div>
 `;
