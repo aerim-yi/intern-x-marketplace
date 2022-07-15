@@ -1,53 +1,46 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ETHTokenType,
   ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
+import { Button } from 'react-bootstrap';
 import { useWalletHook } from '../NavBar/useWallethook';
 
 const LINK_URL = "https://link.ropsten.x.immutable.com";
 
-const DepositFunction : React.FC = () => {
+const DepositFunction: React.FC = () => {
   const link = new Link(LINK_URL);
 
-  const { walletInfo, load } = useWalletHook();
+  const wallet = useWalletHook();
 
-  function deposit() {
-    console.log("--- deposit clicked");
-
-    // Deposit ETH into IMX
+  function deposit(amount: string) {
     link.deposit({
       type: ETHTokenType.ETH,
-      amount: "0.5",
-    });
+      "amount": amount
+    })
   }
-  
-  useEffect(() => {
-    if (!walletInfo){
-      load();
-    }
-    deposit();
-  }, [walletInfo]);
 
-return (
-  <div>
+  return (
     <div>
-    {walletInfo ? (
-      <>
-      <strong>Deposit</strong>
-        <div style={{ display: "flex" }}>
-          <button onClick={deposit}>Deposit (0.5)</button>
-        </div>
-      </>
-    ) : (
       <div>
+        {wallet ? (
+          <>
+            <h3 style={{ marginTop: '50px' }}><strong>Deposit</strong></h3>
+            <div style={{ display: "flex" }}>
+              <Button style={{ marginRight: '15px' }} variant='info' onClick={() => deposit('0.5')}>Deposit 0.5 ETH</Button>
+              <Button style={{ marginRight: '15px' }} variant='info' onClick={() => deposit('1')}>Deposit 1 ETH</Button>
+              <Button variant='info' onClick={() => deposit('1.5')}>Deposit 1.5 ETH</Button>
+            </div>
+          </>
+        ) : (
+          <div>
+          </div>
+        )}
       </div>
-    )}
     </div>
-  </div>
   );
-  
+
 }
 
 export default DepositFunction;

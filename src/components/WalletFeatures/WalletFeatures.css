@@ -21,7 +21,7 @@ body {
 .WalletFeatures-container {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 100%;
-  background-color: rgb(152, 132, 132);
+  /* background-color: rgb(152, 132, 132); */
 }

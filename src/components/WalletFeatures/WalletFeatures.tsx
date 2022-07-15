@@ -26,9 +26,9 @@ __________________________________________________
 */
 
 import "./WalletFeatures.css"
-import BalanceFunction from "./BalanceFunction";
+// import BalanceFunction from "./BalanceFunction";
 import DepositFunction from "./DepositFunction";
-import WithdrawFunction from "./WithdrawFunction";
+// import WithdrawFunction from "./WithdrawFunction";
 
 const WalletFeatures = () => {
   return (
@@ -37,13 +37,13 @@ const WalletFeatures = () => {
         <DepositFunction />
       </div>
       <div>
-        <WithdrawFunction />
+        {/* <WithdrawFunction /> */}
       </div>
-      <div>
+      {/* <div>
         <BalanceFunction />
-      </div>
+      </div> */}
     </nav>
-  );  
+  );
 };
 
 export default WalletFeatures;

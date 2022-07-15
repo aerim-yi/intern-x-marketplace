@@ -1,56 +1,57 @@
-import React, {useEffect, useState} from 'react';
-import {
-  ETHTokenType,
-  ImmutableXClient,
-  Link
-} from "@imtbl/imx-sdk";
-import { useWalletHook } from '../NavBar/useWallethook';
+// import React, {useEffect, useState} from 'react';
+// import {
+//   ETHTokenType,
+//   ImmutableXClient,
+//   Link
+// } from "@imtbl/imx-sdk";
+// import { useWalletHook } from '../NavBar/useWallethook';
 
-const API_URL = "https://api.ropsten.x.immutable.com/v1";
+// const API_URL = "https://api.ropsten.x.immutable.com/v1";
 
-const BalanceFunction : React.FC = () => {
+// const BalanceFunction : React.FC = () => {
 
-  const { walletInfo, load } = useWalletHook();
+//   const { walletInfo, load } = useWalletHook();
 
-  const [ethBalance, setEthBalance] = useState({});
+//   const [ethBalance, setEthBalance] = useState({});
 
-   // Get the user balances
-   async function listUserBalances() {
-    const client = await ImmutableXClient.build({
-      publicApiUrl: API_URL,
-    });
+//    // Get the user balances
+//    async function listUserBalances() {
+//     const client = await ImmutableXClient.build({
+//       publicApiUrl: API_URL,
+//     });
 
-    if (walletInfo?.address) {
-      const balance = await client.getBalance({
-        user: walletInfo?.address,
-        tokenAddress: ETHTokenType.ETH,
-      });
-      setEthBalance(Number(balance.balance.toString()) / 1e18);
-    } else {
-      setEthBalance({});
-    }
-  }
-  
-  useEffect(() => {
-    if (!walletInfo){
-      load();
-    }
-    listUserBalances();
-  }, [walletInfo]);
+//     if (walletInfo?.address) {
+//       const balance = await client.getBalance({
+//         user: walletInfo?.address,
+//         tokenAddress: ETHTokenType.ETH,
+//       });
+//       setEthBalance(Number(balance.balance.toString()) / 1e18);
+//     } else {
+//       setEthBalance({});
+//     }
+//   }
 
-return (
-  <div>
-    {walletInfo ? (
-        <>
-        <strong>Balance</strong>
-          <p>{ethBalance ? `${ethBalance}` : ""}</p>
-        </>
-      ) : (
-        <div>
-        </div>
-    )}
-  </div>
-  );
-}
+//   useEffect(() => {
+//     if (!walletInfo){
+//       load();
+//     }
+//     listUserBalances();
+//   }, [walletInfo]);
 
-export default BalanceFunction;
+// return (
+//   <div>
+//     {walletInfo ? (
+//         <>
+//         <strong>Balance</strong>
+//           <p>{ethBalance ? `${ethBalance}` : ""}</p>
+//         </>
+//       ) : (
+//         <div>
+//         </div>
+//     )}
+//   </div>
+//   );
+// }
+
+// export default BalanceFunction;
+export { }
