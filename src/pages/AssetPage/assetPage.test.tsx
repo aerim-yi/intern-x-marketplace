@@ -2,6 +2,7 @@ import { AssetPage } from './index';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { getUserAssets } from '../../api/assets-api';
+import { useWalletHook } from '../../components/NavBar/useWallethook';
 
 const assetData = {
     result: [{
@@ -13,11 +14,18 @@ const assetData = {
     }]
 }
 
+const wallet = {
+    walletInfo: {
+        address: "0xe3ece548F1DD4B1536Eb6eE188fE35350bc1aa1a"
+    }
+}
+
 jest.mock('../../api/assets-api');
+jest.mock('../../components/NavBar/useWallethook')
 
 describe('Asset page', () => {
     beforeEach(() => {
-        window.localStorage.setItem('WALLET_ADDRESS', JSON.stringify({ 'address': 'hsgjgda' }));
+        (useWalletHook as jest.Mock).mockReturnValue(wallet);
         (getUserAssets as jest.Mock).mockResolvedValue(assetData);
     });
 

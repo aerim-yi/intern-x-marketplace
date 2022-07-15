@@ -19,36 +19,14 @@ exports[`HeaderBar component match snapshot 1`] = `
         </span>
       </a>
       <div
-        class="btn-group"
+        class="walletButtonGroup btn-group"
         role="group"
       >
-        <a
-          href="/asset"
-          style="text-decoration: none; color: black;"
-        >
-          <button
-            class="btn btn-outline-info"
-            type="button"
-          >
-            Asset
-          </button>
-        </a>
-        <a
-          href="/wallet_management"
-          style="text-decoration: none; color: black;"
-        >
-          <button
-            class="btn btn-outline-info"
-            type="button"
-          >
-            Wallet
-          </button>
-        </a>
         <button
           class="btn btn-outline-info"
           type="button"
         >
-          Disconnect
+          Connect Wallet
         </button>
       </div>
     </div>

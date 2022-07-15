@@ -5,12 +5,8 @@ import { getCollections } from "../../api/collections-api";
 import { Link } from "react-router-dom";
 import placeholderImg from '../../asset/placeholderImg.jpg';
 import CollectionCard from '../../components/NFTCollection/CollectionCard'
-import Wallet from "../../components/NavBar/Wallet";
 
-interface Props {
-    walletAddress: string | undefined;
-}
-export const CollectionsPage: React.FC<Props> = ({ walletAddress }) => {
+export const CollectionsPage: React.FC = () => {
     const [collections, setCollections] = useState<Collection[]>([])
 
     useEffect(() => {
@@ -21,7 +17,6 @@ export const CollectionsPage: React.FC<Props> = ({ walletAddress }) => {
 
     return (
         <>
-            <Wallet walletAddress={walletAddress} />
             <Container>
                 <Row>
                     {!!collections.length && collections.map((item: Collection, index) => {

@@ -6,7 +6,7 @@ describe('HeaderBar component', () => {
     test('match snapshot', () => {
         const { container } = render(
             <MemoryRouter>
-                <HeaderBar login={() => jest.fn()} logout={() => jest.fn()} walletAddress={'djhjhsa'} />
+                <HeaderBar />
             </MemoryRouter>
         )
         expect(container).toMatchSnapshot()

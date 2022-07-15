@@ -18,7 +18,7 @@ describe('Collection page', () => {
     });
 
     test('renders cards if request succeeds', async () => {
-        render(<MemoryRouter><CollectionsPage walletAddress={'fdshfghdgfhfjgds'} /></MemoryRouter>)
+        render(<MemoryRouter><CollectionsPage /></MemoryRouter>)
 
         // Get loading element
         const loadingElement = screen.getByText('Loading...')
