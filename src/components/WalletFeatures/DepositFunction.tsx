@@ -4,26 +4,14 @@ import {
   ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
+import { useWalletHook } from '../NavBar/useWallethook';
 
-const enum URLs {
-  WALLET_ADDRESS = "WALLET_ADDRESS",
-  STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
-  LINK_URL = "https://link.ropsten.x.immutable.com",
-  API_URL = "https://api.ropsten.x.immutable.com/v1",
-  ETH_NETWORK = "ETH_NETWORK",
-}
+const LINK_URL = "https://link.ropsten.x.immutable.com";
 
 const DepositFunction : React.FC = () => {
-  const link = new Link(URLs.LINK_URL);
+  const link = new Link(LINK_URL);
 
-  const [ethBalance, setEthBalance] = useState({});
-  const [walletAddress, setWalletAddress] = useState(
-    localStorage.WALLET_ADDRESS
-  );
-  const [ethNetwork, setEthNetwork] = useState(localStorage.ETH_NETWORK);
-  const [providerPreference, setProviderPreference] = useState(
-    localStorage.PROVIDER_PREFERENCE
-  );
+  const { walletInfo, load } = useWalletHook();
 
   function deposit() {
     console.log("--- deposit clicked");
@@ -35,10 +23,17 @@ const DepositFunction : React.FC = () => {
     });
   }
   
+  useEffect(() => {
+    if (!walletInfo){
+      load();
+    }
+    deposit();
+  }, [walletInfo]);
+
 return (
   <div>
     <div>
-    {walletAddress ? (
+    {walletInfo ? (
       <>
       <strong>Deposit</strong>
         <div style={{ display: "flex" }}>

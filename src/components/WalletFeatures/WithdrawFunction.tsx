@@ -4,6 +4,7 @@ import {
   ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
+import { useWalletHook } from '../NavBar/useWallethook';
 
 const enum URLs {
   WALLET_ADDRESS = "WALLET_ADDRESS",
@@ -13,7 +14,9 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
-const WalletFunctions : React.FC = () => {
+// FC for Wallet
+
+const WithdrawFunction : React.FC = () => {
   const link = new Link(URLs.LINK_URL);
 
   const [ethBalance, setEthBalance] = useState({});
@@ -44,6 +47,8 @@ const WalletFunctions : React.FC = () => {
     });
   }
   
+
+
 return (
   <div>
     {walletAddress ? (
@@ -66,4 +71,4 @@ return (
 
 
 
-export default WalletFunctions;
+export default WithdrawFunction;

@@ -21,8 +21,8 @@ export const CollectionsPage = () => {
     return (
         <>
             <HeaderBar />
-            <WalletFeatures />
             <NavBar />
+            <WalletFeatures />
             <Container>
                 <Row>
                     {!!collections.length && collections.map((item: Collection, index) => {

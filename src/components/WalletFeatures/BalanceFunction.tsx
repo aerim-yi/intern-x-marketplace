@@ -6,25 +6,18 @@ import {
 } from "@imtbl/imx-sdk";
 import { useWalletHook } from '../NavBar/useWallethook';
 
-const enum URLs {
-  WALLET_ADDRESS = "WALLET_ADDRESS",
-  STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
-  LINK_URL = "https://link.ropsten.x.immutable.com",
-  API_URL = "https://api.ropsten.x.immutable.com/v1",
-  ETH_NETWORK = "ETH_NETWORK",
-}
+const API_URL = "https://api.ropsten.x.immutable.com/v1";
 
 const BalanceFunction : React.FC = () => {
-  const link = new Link(URLs.LINK_URL);
+
   const { walletInfo, load } = useWalletHook();
 
   const [ethBalance, setEthBalance] = useState({});
 
    // Get the user balances
    async function listUserBalances() {
-    // const walletInfo = JSON.parse(localStorage.getItem("WALLET_INFO") ?? "{}");
     const client = await ImmutableXClient.build({
-      publicApiUrl: URLs.API_URL,
+      publicApiUrl: API_URL,
     });
 
     if (walletInfo?.address) {
@@ -44,8 +37,6 @@ const BalanceFunction : React.FC = () => {
     }
     listUserBalances();
   }, [walletInfo]);
-
-console.log(walletInfo);
 
 return (
   <div>
