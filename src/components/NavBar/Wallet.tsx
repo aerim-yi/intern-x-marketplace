@@ -1,43 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {
-  ETHTokenType,
-  ImmutableXClient,
-  Link
-} from "@imtbl/imx-sdk";
-import "./NavBar.css"
-import {useWalletHook} from "./useWallethook"
+import { useWalletHook } from "./useWallethook"
 
-const enum URLs {
-  WALLET_ADDRESS = "WALLET_ADDRESS",
-  STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
-  LINK_URL = "https://link.ropsten.x.immutable.com",
-  API_URL = "https://api.ropsten.x.immutable.com/v1",
-  ETH_NETWORK = "ETH_NETWORK",
-}
-
-console.log(localStorage.WALLET_INFO)
-
-const Wallet : React.FC = () => {
-
-  const { walletInfo, login, logout,} = useWalletHook();
+const Wallet = () => {
+  const wallet = useWalletHook();
+  const walletAddress = wallet?.walletInfo?.address;
 
   return (
     <div>
-      {walletInfo ? (
+      {walletAddress ? (
         <>
-          <button onClick={logout} className = "location">Disconnect</button>
-          <p>
-            <strong>Wallet address: </strong>
-            {walletInfo.address}
-          </p>
-          <p>
-            <strong>Eth network: </strong>
-            {walletInfo.ethNetwork}
-          </p>
-          <p>
-            <strong>Provider reference: </strong>
-            {walletInfo.providerPreference}
-          </p>
+          <span>
+            <h3 style={{ marginTop: '20px' }}>
+              <strong>Wallet address: </strong>
+            </h3>
+            <p><strong>{walletAddress}</strong></p>
+          </span>
           <div
             style={{
               display: "flex",
@@ -51,10 +27,11 @@ const Wallet : React.FC = () => {
             display: "flex",
           }}
         >
-          <button onClick={login}>Connect</button>
         </div>
-      )}
-    </div>
-)};
+      )
+      }
+    </div >
+  )
+};
 
 export default Wallet;

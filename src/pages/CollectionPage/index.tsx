@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import { Collection } from "@imtbl/core-sdk";
-import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
-import NavBar from "../../components/NavBar/NavBar"
 import { getCollections } from "../../api/collections-api";
 import { Link } from "react-router-dom";
-import placeholderImg from '../../asset/placehoderImg.jpg';
+import placeholderImg from '../../asset/placeholderImg.jpg';
 import CollectionCard from '../../components/NFTCollection/CollectionCard'
 
-export const CollectionsPage = () => {
+export const CollectionsPage: React.FC = () => {
     const [collections, setCollections] = useState<Collection[]>([])
 
     useEffect(() => {
@@ -19,8 +17,6 @@ export const CollectionsPage = () => {
 
     return (
         <>
-            <HeaderBar />
-            <NavBar />
             <Container>
                 <Row>
                     {!!collections.length && collections.map((item: Collection, index) => {
