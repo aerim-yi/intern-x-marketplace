@@ -13,7 +13,7 @@ const enum URLs {
   ETH_NETWORK = "ETH_NETWORK",
 }
 
-const WalletFunctions : React.FC = () => {
+const DepositFunction : React.FC = () => {
   const link = new Link(URLs.LINK_URL);
 
   const [ethBalance, setEthBalance] = useState({});
@@ -55,4 +55,4 @@ return (
   
 }
 
-export default WalletFunctions;
+export default DepositFunction;
