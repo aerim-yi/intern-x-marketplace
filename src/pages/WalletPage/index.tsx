@@ -6,6 +6,7 @@ import { utils, BigNumber } from "ethers";
 import { Link } from '@imtbl/imx-sdk';
 import { useWalletHook } from '../../components/NavBar/useWallethook';
 import Wallet from '../../components/NavBar/Wallet';
+import WalletFeatures from '../../components/WalletFeatures/WalletFeatures';
 
 
 export const WalletPage = () => {
@@ -53,6 +54,7 @@ export const WalletPage = () => {
                                 {!balances.length && <h1>No Balance</h1>}
                                 <h3 style={{ marginTop: '50px' }}><strong>History</strong></h3>
                                 <Button variant="info" onClick={showUserHistory}>Click here to see transactions</Button>
+                                <WalletFeatures />
                             </> :
                             <>
                                 {<h3>'You are not signed in'</h3>}
