@@ -4,6 +4,7 @@ import {
   ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
+import { useWalletHook } from '../NavBar/useWallethook';
 
 const enum URLs {
   WALLET_ADDRESS = "WALLET_ADDRESS",
@@ -15,29 +16,40 @@ const enum URLs {
 
 const BalanceFunction : React.FC = () => {
   const link = new Link(URLs.LINK_URL);
+  const { walletInfo, load } = useWalletHook();
 
   const [ethBalance, setEthBalance] = useState({});
-  const [walletAddress, setWalletAddress] = useState(
-    localStorage.WALLET_ADDRESS
-  );
 
    // Get the user balances
    async function listUserBalances() {
-    const address = localStorage.getItem("WALLET_ADDRESS") ?? "";
+    // const walletInfo = JSON.parse(localStorage.getItem("WALLET_INFO") ?? "{}");
     const client = await ImmutableXClient.build({
       publicApiUrl: URLs.API_URL,
     });
 
-    const balance = await client.getBalance({
-      user: address,
-      tokenAddress: ETHTokenType.ETH,
-    });
-    setEthBalance(Number(balance.balance.toString()) / 1e18);
+    if (walletInfo?.address) {
+      const balance = await client.getBalance({
+        user: walletInfo?.address,
+        tokenAddress: ETHTokenType.ETH,
+      });
+      setEthBalance(Number(balance.balance.toString()) / 1e18);
+    } else {
+      setEthBalance({});
+    }
   }
   
+  useEffect(() => {
+    if (!walletInfo){
+      load();
+    }
+    listUserBalances();
+  }, [walletInfo]);
+
+console.log(walletInfo);
+
 return (
   <div>
-    {walletAddress ? (
+    {walletInfo ? (
         <>
         <strong>Balance</strong>
           <p>{ethBalance ? `${ethBalance}` : ""}</p>
@@ -49,7 +61,5 @@ return (
   </div>
   );
 }
-
-
 
 export default BalanceFunction;

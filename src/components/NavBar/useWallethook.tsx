@@ -3,12 +3,15 @@ import { ETHTokenType, ImmutableXClient, Link, LinkResults } from "@imtbl/imx-sd
 import "./NavBar.css";
 
 const enum URLs {
-  WALLET_ADDRESS = "WALLET_ADDRESS",
-  STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY",
+ 
   LINK_URL = "https://link.ropsten.x.immutable.com",
   API_URL = "https://api.ropsten.x.immutable.com/v1",
   ETH_NETWORK = "ETH_NETWORK",
 }
+
+const WALLET_INFO = "WALLET_INFO";
+// const WALLET_ADDRESS = "WALLET_ADDRESS";
+// const STARK_PUBLIC_KEY = "STARK_PUBLIC_KEY";
 
 const useWalletHook = () => {
   const link = new Link(URLs.LINK_URL);
@@ -16,16 +19,25 @@ const useWalletHook = () => {
 
   async function login() {
     const walletInfo = await link.setup({});
-    localStorage.setItem("walletInfo", JSON.stringify(walletInfo));
+    localStorage.setItem(WALLET_INFO, JSON.stringify(walletInfo));
     setWalletInfo(walletInfo);
   }
 
   function logout() {
-    localStorage.removeItem(URLs.WALLET_ADDRESS);
-    setWalletInfo(localStorage.WALLET_INFO)
+    // localStorage.removeItem(WALLET_ADDRESS);
+    // localStorage.removeItem(STARK_PUBLIC_KEY);
+    localStorage.removeItem(WALLET_INFO);
+    setWalletInfo(undefined);
   }
 
-  return { walletInfo, login, logout }
+  function load(){
+    const connectedWallet = localStorage.getItem(WALLET_INFO);
+    if (connectedWallet != null) {
+      setWalletInfo(JSON.parse(connectedWallet));
+    }
+  }
+
+  return { walletInfo, login, logout, load }
 }
 
 export {useWalletHook};
