@@ -5,12 +5,12 @@ describe('Clicking into a collection ', () => {
 
         const testString = "Siwonchoi"
 
-        cy.visit("http://localhost:3000");
+        cy.visit("/");
     
         cy.contains(testString).click();
         cy.contains('Intern X Marketplace').click();
         
-        cy.url().should('equal', 'http://localhost:3000/')
+        cy.url().should('equal', '/')
 
       })
     })
