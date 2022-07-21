@@ -22,7 +22,7 @@ const CollectionCard = (props: Props) => {
           }}
         />
       </div>
-      <h5 className="cardText" data-testid="CollectionCard_Name">{props.name}</h5>
+      <h5 className="cardText" data-test-id="CollectionCard_Name">{props.name}</h5>
     </Card>
   );
 }

@@ -38,7 +38,7 @@ const CollectionItem = ({ name, url, price, orderId }: Props) => {
           }}
         />
       </div>
-      <h5 data-testid="CollectionItem_Name" className="cardText">{name || 'No Title'}</h5>
+      <h5 data-test-id="CollectionItem_Name" className="cardText">{name || 'No Title'}</h5>
       <p>Sales Price: {price} ETH</p>
       <Button variant="info" onClick={() => buyItem(orderId)} >Buy Now</Button>
     </Card>
