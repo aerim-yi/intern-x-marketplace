@@ -2,7 +2,7 @@
 
 describe('Clicking into a collection ', () => {
 it('finds the content "type"', () => {
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
 
     cy.contains('No Way Back IV Collection').click();
     cy.url().should('include', '/collection/0x47edfa00d13277a6b333e9020d90b22507315ca6')
