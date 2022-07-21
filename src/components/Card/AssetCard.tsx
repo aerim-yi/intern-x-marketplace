@@ -16,7 +16,7 @@ export const AssetCard = ({ collectionName, itemName, src }: Props) => {
                 <img
                     alt=""
                     src={src}
-                    data-test-id="AssetCard_Img"
+                    data-testid="AssetCard_Img"
                     // Load placeholder on error: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
@@ -24,8 +24,8 @@ export const AssetCard = ({ collectionName, itemName, src }: Props) => {
                     }}
                 />
             </div>
-            <h5 data-test-id="AssetCard_Name" className="cardText">{itemName}</h5>
-            <p data-test-id="AssetCard_CollectionName">
+            <h5 data-testid="AssetCard_Name" className="cardText">{itemName}</h5>
+            <p data-testid="AssetCard_CollectionName">
                 {collectionName}
             </p>
         </Card>
