@@ -10,7 +10,7 @@ describe('Clicking into a collection ', () => {
         cy.contains(testString).click();
         cy.contains('Intern X Marketplace').click();
         
-        cy.url().should('equal', '/')
+        cy.url().should('equal', 'http://localhost:3000/')
 
       })
     })
