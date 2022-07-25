@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HeaderBar } from "../../components/HeaderBar/HeaderBar"
+import HeaderBar from "../../components/HeaderBar/HeaderBar"
 import { useParams } from "react-router-dom"
 import NavBar from "../../components/NavBar/NavBar"
 import { Container, Row, Col } from "react-bootstrap";
@@ -12,7 +12,7 @@ interface Params {
     id: string
 }
 
-export const OrderPage = () => {
+const OrderPage = () => {
     const params = useParams<Params>();
     const [orders, setOrders] = useState<Order[]>([])
     const [noOrders, setNoOrders] = useState(false)
@@ -35,7 +35,7 @@ export const OrderPage = () => {
                 <Row>
                     {!!orders.length && orders.map((item: Order, index) => {
                         return (
-                            <Col xs={12} sm={6} md={4} key={index} data-testid="CollectionItem">
+                            <Col xs={12} sm={6} md={4} key={index}>
                                 <CollectionItem url={item.sell.data.properties?.image_url || placeholderImg}
                                     name={item.sell.data.properties?.name} />
                             </Col>
@@ -48,3 +48,5 @@ export const OrderPage = () => {
         </>
     )
 }
+
+export default OrderPage

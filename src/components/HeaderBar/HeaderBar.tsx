@@ -1,11 +1,13 @@
 import { Navbar, Container } from 'react-bootstrap';
 
-export const HeaderBar = () => {
+const HeaderBar = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/">Intern X Marketplace</Navbar.Brand>
+                <Navbar.Brand href="#home">Intern X Marketplace</Navbar.Brand>
             </Container>
         </Navbar>
     )
 }
+
+export default HeaderBar
