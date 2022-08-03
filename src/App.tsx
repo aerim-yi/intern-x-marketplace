@@ -12,6 +12,7 @@ const App = () => {
     <Router>
       <WalletProvider>
         <HeaderBar />
+        <button onClick={methodDoesNotExist}>Bad Button</button>;
         <Switch>
           <Route exact path="/">
             <CollectionsPage />
