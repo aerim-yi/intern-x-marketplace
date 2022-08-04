@@ -62,4 +62,3 @@ return (
 }
 
 export default WithdrawFunction;
-export { }

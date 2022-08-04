@@ -12,9 +12,6 @@ const WalletFeatures = () => {
       <div>
         <WithdrawFunction />
       </div>
-      {/* <div>
-        <BalanceFunction />
-      </div> */}
     </nav>
   );
 };
