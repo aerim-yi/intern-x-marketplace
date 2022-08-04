@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link, ImmutableXClient, ImmutableMethodResults, ERC721TokenType, ETHTokenType, ImmutableRollupStatus  } from '@imtbl/imx-sdk';
 import { useEffect, useState } from 'react';
 
@@ -46,10 +47,26 @@ const WithdrawFunction = ({client, link, wallet}: BridgingProps) => {
 
   // prepare an eth withdrawal
   async function prepareWithdrawalETH() {
-    await link.prepareWithdrawal({
-      type: ETHTokenType.ETH,
-      amount: prepareAmount,
-    })
+    // await link.prepareWithdrawal({
+    //   type: ETHTokenType.ETH,
+    //   amount: prepareAmount,
+    // })
+
+    // Initialize Link
+    let link = new Link('https://link.ropsten.x.immutable.com')
+    
+    try{
+      // Call the method
+      let  result= await link.prepareWithdrawal({
+        "type": "ETH",
+        "amount": "2"
+      })
+      // Print the result
+      console.log(result)
+    }catch(error){
+      // Catch and print out the error
+      console.error(error)
+    }
   };
 
   // complete an eth withdrawal
@@ -61,7 +78,6 @@ const WithdrawFunction = ({client, link, wallet}: BridgingProps) => {
 
   return (
     <div>
-
       <div>
         <b>ETH:</b>
         <br/><br/>
