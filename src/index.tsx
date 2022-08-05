@@ -7,10 +7,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 Sentry.init({
-  dsn: "https://d743e4e355714473baabdb7fb5ac3e14@o1344629.ingest.sentry.io/6620469",
-  integrations: [new BrowserTracing()],
+  dsn: "https://4241c76eb87e4c36906bea3ddeaebb21@o1344629.ingest.sentry.io/6625890",
+  integrations: [
+    new BrowserTracing({
+      tracingOrigins: ["https://intern-x-marketplace.herokuapp.com/", /^\//],
+      routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
+    }),
+  ],
   tracesSampleRate: 1.0,
 });
 
