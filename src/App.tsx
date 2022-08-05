@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CollectionsPage } from './pages/CollectionPage';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,6 +7,7 @@ import { AssetPage } from './pages/AssetPage';
 import { WalletPage } from './pages/WalletPage';
 import { HeaderBar } from './components/HeaderBar/HeaderBar';
 import { WalletProvider } from './Context/WalletContext';
+import * as Sentry from "@sentry/react";
 
 const App = () => {
   return (
@@ -31,4 +33,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Sentry.withProfiler(App);
