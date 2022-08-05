@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   ETHTokenType,
-  ImmutableXClient,
   Link
 } from "@imtbl/imx-sdk";
 import { Button } from 'react-bootstrap';
 import { useWalletHook } from '../NavBar/useWallethook';
+
 
 const LINK_URL = "https://link.ropsten.x.immutable.com";
 

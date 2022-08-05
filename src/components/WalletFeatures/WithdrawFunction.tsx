@@ -1,65 +1,78 @@
-// import React, {useEffect, useState} from 'react';
-// import {
-//   ETHTokenType,
-//   ImmutableXClient,
-//   Link
-// } from "@imtbl/imx-sdk";
-// import { useWalletHook } from '../NavBar/useWallethook';
+import { Link, ImmutableXClient, ImmutableMethodResults, ETHTokenType, ImmutableRollupStatus  } from '@imtbl/imx-sdk';
+import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 
-// const LINK_URL = "https://link.ropsten.x.immutable.com";
+interface WithdrawProps {
+  client: ImmutableXClient,
+  link: Link,
+  wallet: string
+}
 
-// // FC for Wallet
+const WithdrawFunction = ({client, link, wallet}: WithdrawProps) => {
+  // withdrawals
+  const [preparingWithdrawals, setPreparingWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
+  const [readyWithdrawals, setReadyWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
+  const [completedWithdrawals, setCompletedWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
+  // eth
+  const [prepareAmount, setPrepareAmount] = useState('');
 
-// const WithdrawFunction : React.FC = () => {
-//   const link = new Link(LINK_URL);
+  useEffect(() => {
+    load()
+  }, [])
 
-//   // const { walletInfo, load } = useWalletHook();
-//   const wallet = useWalletHook();
+  async function load(): Promise<void> {
+    setPreparingWithdrawals(await client.getWithdrawals({
+      user: wallet,
+      rollup_status: ImmutableRollupStatus.included
+    })) // included in batch awaiting confirmation
+    setReadyWithdrawals(await client.getWithdrawals({
+      user: wallet,
+      rollup_status: ImmutableRollupStatus.confirmed,
+      withdrawn_to_wallet: false
+    })) // confirmed on-chain in a batch and ready to be withdrawn
+    setCompletedWithdrawals(await client.getWithdrawals({
+      user: wallet,
+      withdrawn_to_wallet: true
+    })) // confirmed on-chain in a batch and already withdrawn to L1 wallet
+  };
 
-//   function prepareWithdrawal() {
-//     console.log("--- prepareWithdrawal clicked");
+  // prepare an eth withdrawal
+  async function prepareWithdrawalETH() {
+    await link.prepareWithdrawal({
+      type: ETHTokenType.ETH,
+      amount: prepareAmount,
+    })
+  };
 
-//     link.prepareWithdrawal({
-//       type: ETHTokenType.ETH,
-//       amount: "0.01", //The amount of the token to withdraw
-//     });
-//   }
+  // complete an eth withdrawal
+  async function completeWithdrawalETH() {
+    await link.completeWithdrawal({
+      type: ETHTokenType.ETH,
+    })
+  };
 
-//   function completeWithdrawal() {
-//     console.log("--- completeWithdrawal clicked");
+  return (
+    <div>
+      <div>
+        <div>
+        <h3><strong>Prepare Withdraw</strong></h3>
+          <p>(submit to be rolled up and confirmed on chain in the next batch):</p>
+          <label>
+          <strong>Amount (ETH)</strong>:
+            <input type="text" value={prepareAmount} onChange={e => setPrepareAmount(e.target.value)} />
+          </label>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={prepareWithdrawalETH}>Prepare ETH Withdrawal</Button>
+        </div>
+        <br/>
+        <div>
+        <h3><strong>Complete ETH withdrawal</strong></h3>
+        (withdraws entire eth balance that is ready for withdrawal to L1 wallet):
+          <br/><br/>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={completeWithdrawalETH}>Complete ETH Withdrawal</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-//     link.completeWithdrawal({
-//       type: ETHTokenType.ETH,
-//     });
-//   }
-
-//   useEffect(() => {
-//     if (!walletInfo){
-//       load();
-//     }
-//     prepareWithdrawal();
-//     completeWithdrawal();
-//   }, [walletInfo]);
-
-// return (
-//   <div>
-//     {walletInfo ? (
-//   <>
-//     <strong>Withdrawal</strong>
-//     <div style={{ display: "flex" }}>
-//       <button onClick={prepareWithdrawal}>Pepare Withdrawal (0.01)</button>
-//     </div>
-//     <div style={{ display: "flex" }}>
-//       <button onClick={completeWithdrawal}>Complete Withdrawal</button>
-//     </div>
-//   </>
-//   ) : (
-//     <div>
-//     </div>
-//   )}
-//   </div>
-//   );
-// }
-
-// export default WithdrawFunction;
-export { }
+export default WithdrawFunction;

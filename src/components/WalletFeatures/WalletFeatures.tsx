@@ -1,47 +1,25 @@
-/* ### Plan
-
-Aiming for location of Deposit Withdra to look like :
-___________________________________________________
-    Intern X Marketplace 
-
-Marketplace      Connect to Wallet      Assets
-
-                Wallet Address...
-                Network ...
-
-    Deposit                         Wtihdraw
-    (Button)                        (Button)
-
-    _____       _____       _____       _____    
-   |     |     |     |     |     |     |     |  
-   |     |     |     |     |     |     |     |   
-    -----       -----       -----       -----    
-
-__________________________________________________
-
-- Changes to implement: 
-    - Insert secondary 'NavBar' (only displays 'connect to wallet to withdraw, deposit, and see balance')
-    - Change colour of current 'NavBar'
-
-*/
-
-import "./WalletFeatures.css"
-// import BalanceFunction from "./BalanceFunction";
+import { Link, ImmutableXClient } from '@imtbl/imx-sdk';
+import { useState } from 'react';
 import DepositFunction from "./DepositFunction";
-// import WithdrawFunction from "./WithdrawFunction";
+import WithdrawFunction from "./WithdrawFunction";
+
 
 const WalletFeatures = () => {
+  const [wallet, setWallet] = useState('undefined');
+  const link = new Link('https://link.ropsten.x.immutable.com')
+  const [client, setClient] = useState<ImmutableXClient>(Object);
   return (
-    <nav className="WalletFeatures-container">
+    <nav>
       <div>
         <DepositFunction />
       </div>
+      <br></br>
       <div>
-        {/* <WithdrawFunction /> */}
+        <WithdrawFunction  
+          client={client}
+          link={link}
+          wallet={wallet}/>
       </div>
-      {/* <div>
-        <BalanceFunction />
-      </div> */}
     </nav>
   );
 };
