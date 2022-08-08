@@ -4,46 +4,99 @@ import { render, screen, waitForElementToBeRemoved } from '@testing-library/reac
 import { getUserAssets } from '../../api/assets-api';
 import { useWalletHook } from '../../components/NavBar/useWallethook';
 
-const assetData = {
-    result: [{
-        image_url: 'img',
-        collection: {
-            name: 'colllectionName'
-        },
-        name: 'testname',
-    }]
-}
-
-const wallet = {
-    walletInfo: {
-        address: "0xe3ece548F1DD4B1536Eb6eE188fE35350bc1aa1a"
-    }
-}
-
 jest.mock('../../api/assets-api');
 jest.mock('../../components/NavBar/useWallethook')
 
 describe('Asset page', () => {
-    beforeEach(() => {
+    describe('when the wallet information exists', () => {
+        const wallet = {
+            walletInfo: {
+                address: "0xe3ece548F1DD4B1536Eb6eE188fE35350bc1aa1a"
+            }
+        }
+
+        beforeEach(() => {
+            (useWalletHook as jest.Mock).mockReturnValue(wallet);
+        })
+
+        test('renders cards if request succeeds', async () => {
+            const assetData = {
+                result: [{
+                    image_url: 'img',
+                    collection: {
+                        name: 'colllectionName'
+                    },
+                    name: 'testname',
+                }]
+            };
+            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+            render(<MemoryRouter><AssetPage /></MemoryRouter>)
+
+            // Get loading element
+            const loadingElement = screen.getByText('Loading...')
+            await waitForElementToBeRemoved(loadingElement)
+
+            // Get test ids
+            const assetCardElements = screen.getAllByTestId('AssetCard');
+            const assetCardName = screen.getByTestId('AssetCard_Name');
+            const assetCardCollectionName = screen.getByTestId('AssetCard_CollectionName');
+
+            expect(getUserAssets).toHaveBeenCalled()
+            expect(assetCardElements).toHaveLength(1);
+            expect(assetCardName).toHaveTextContent(assetData.result[0].name);
+            expect(assetCardCollectionName).toHaveTextContent(assetData.result[0].collection.name);
+        })
+
+        test('renders placehoder image if img_url is not available', async () => {
+            const assetData = {
+                result: [{
+                    image_url: '',
+                    collection: {
+                        name: 'colllectionName'
+                    },
+                    name: 'testname',
+                }]
+            };
+            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+            render(<MemoryRouter><AssetPage /></MemoryRouter>)
+
+            // Get loading element
+            const loadingElement = screen.getByText('Loading...')
+            await waitForElementToBeRemoved(loadingElement)
+
+            const assetCard_Img = screen.getByTestId('AssetCard_Img');
+            expect(assetCard_Img).toHaveAttribute('src', 'placeholderImg.jpg');
+        })
+
+        test('renders "No assets to show" when there is no asset available', async () => {
+            const assetData = {
+                result: []
+            };
+            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+            render(<MemoryRouter><AssetPage /></MemoryRouter>)
+
+            // Get loading element
+            const loadingElement = screen.getByText('Loading...')
+            await waitForElementToBeRemoved(loadingElement)
+
+            const noAssetElement = screen.getByText("No assets to show");
+            expect(noAssetElement).toBeInTheDocument();
+        })
+    })
+
+    describe('when the wallet information does not exist', () => {
+        const wallet = {
+            walletInfo: {
+                address: ""
+            }
+        };
         (useWalletHook as jest.Mock).mockReturnValue(wallet);
-        (getUserAssets as jest.Mock).mockResolvedValue(assetData);
-    });
+        
+        test('renders "Connect the wallet first!"', async () => {
+            render(<MemoryRouter><AssetPage /></MemoryRouter>)
 
-    test('renders cards if request succeeds', async () => {
-        render(<MemoryRouter><AssetPage /></MemoryRouter>)
-
-        // Get loading element
-        const loadingElement = screen.getByText('Loading...')
-        await waitForElementToBeRemoved(loadingElement)
-
-        // Get test ids
-        const assetCardElements = screen.getAllByTestId('AssetCard');
-        const assetCardName = screen.getByTestId('AssetCard_Name');
-        const assetCardCollectionName = screen.getByTestId('AssetCard_CollectionName');
-
-        expect(getUserAssets).toHaveBeenCalled()
-        expect(assetCardElements).toHaveLength(1);
-        expect(assetCardName).toHaveTextContent(assetData.result[0].name);
-        expect(assetCardCollectionName).toHaveTextContent(assetData.result[0].collection.name);
+            const noWalletElement = screen.getByText("Connect the wallet first!");
+            expect(noWalletElement).toBeInTheDocument();
+        })
     })
 })
