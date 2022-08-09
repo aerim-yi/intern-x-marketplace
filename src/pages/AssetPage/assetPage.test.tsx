@@ -4,6 +4,30 @@ import { render, screen, waitForElementToBeRemoved } from '@testing-library/reac
 import { getUserAssets } from '../../api/assets-api';
 import { useWalletHook } from '../../components/NavBar/useWallethook';
 
+const oneItemAssetData = {
+    result: [{
+        image_url: 'img',
+        collection: {
+            name: 'colllectionName'
+        },
+        name: 'testname',
+    }]
+};
+
+const emptyImgAssetData = {
+    result: [{
+        image_url: '',
+        collection: {
+            name: 'colllectionName'
+        },
+        name: 'testname',
+    }]
+};
+
+const noAssetsData = {
+    result: []
+};
+
 jest.mock('../../api/assets-api');
 jest.mock('../../components/NavBar/useWallethook')
 
@@ -20,16 +44,7 @@ describe('Asset page', () => {
         })
 
         test('renders cards if request succeeds', async () => {
-            const assetData = {
-                result: [{
-                    image_url: 'img',
-                    collection: {
-                        name: 'colllectionName'
-                    },
-                    name: 'testname',
-                }]
-            };
-            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+            (getUserAssets as jest.Mock).mockResolvedValue(oneItemAssetData);
             render(<MemoryRouter><AssetPage /></MemoryRouter>)
 
             // Get loading element
@@ -43,21 +58,13 @@ describe('Asset page', () => {
 
             expect(getUserAssets).toHaveBeenCalled()
             expect(assetCardElements).toHaveLength(1);
-            expect(assetCardName).toHaveTextContent(assetData.result[0].name);
-            expect(assetCardCollectionName).toHaveTextContent(assetData.result[0].collection.name);
+            expect(assetCardName).toHaveTextContent(oneItemAssetData.result[0].name);
+            expect(assetCardCollectionName).toHaveTextContent(oneItemAssetData.result[0].collection.name);
         })
 
         test('renders placehoder image if img_url is not available', async () => {
-            const assetData = {
-                result: [{
-                    image_url: '',
-                    collection: {
-                        name: 'colllectionName'
-                    },
-                    name: 'testname',
-                }]
-            };
-            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+
+            (getUserAssets as jest.Mock).mockResolvedValue(emptyImgAssetData);
             render(<MemoryRouter><AssetPage /></MemoryRouter>)
 
             // Get loading element
@@ -69,10 +76,8 @@ describe('Asset page', () => {
         })
 
         test('renders "No assets to show" when there is no asset available', async () => {
-            const assetData = {
-                result: []
-            };
-            (getUserAssets as jest.Mock).mockResolvedValue(assetData);
+
+            (getUserAssets as jest.Mock).mockResolvedValue(noAssetsData);
             render(<MemoryRouter><AssetPage /></MemoryRouter>)
 
             // Get loading element
@@ -91,7 +96,7 @@ describe('Asset page', () => {
             }
         };
         (useWalletHook as jest.Mock).mockReturnValue(wallet);
-        
+
         test('renders "Connect the wallet first!"', async () => {
             render(<MemoryRouter><AssetPage /></MemoryRouter>)
 
