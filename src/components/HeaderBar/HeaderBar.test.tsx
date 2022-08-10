@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { HeaderBar } from './HeaderBar';
 import { useWalletHook } from '../../components/NavBar/useWallethook';
@@ -42,7 +43,7 @@ describe('HeaderBar component', () => {
         render(<MemoryRouter><HeaderBar /></MemoryRouter>)
 
         const button = screen.getByRole('button', { name: /Connect Wallet/i })
-        await fireEvent.click(button)
+        await userEvent.click(button)
         expect(emptyWallet.login).toHaveBeenCalled();
     })
 
@@ -61,7 +62,7 @@ describe('HeaderBar component', () => {
         render(<MemoryRouter><HeaderBar /></MemoryRouter>)
 
         const button = screen.getByRole('button', { name: /Disconnect/i })
-        await fireEvent.click(button)
+        await userEvent.click(button)
         expect(wallet.logout).toHaveBeenCalled();
         expect(mockHistoryPush).toHaveBeenCalled();
     })
