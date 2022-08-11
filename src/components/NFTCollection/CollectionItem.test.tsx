@@ -2,7 +2,7 @@ import { render, fireEvent, screen  } from '@testing-library/react'
 import { Link } from '@imtbl/imx-sdk'
 import CollectionItem from './CollectionItem'
 
-const testProps = {
+const collectionItemProps = {
     name: 'collectionName',
     url: 'http.test.com',
     price: 'price',
@@ -16,10 +16,10 @@ describe('CollectionItem component', () => {
     test('match snapshot', () => {
         const { container } = render(
             <CollectionItem
-                name={testProps.name}
-                url={testProps.url}
-                price={testProps.price}
-                orderId={testProps.orderId} />
+                name={collectionItemProps.name}
+                url={collectionItemProps.url}
+                price={collectionItemProps.price}
+                orderId={collectionItemProps.orderId} />
         );
         expect(container).toMatchSnapshot()
     })
@@ -27,10 +27,10 @@ describe('CollectionItem component', () => {
     test('load placeholder image on error', () => {
         render(
             <CollectionItem
-                name={testProps.name}
-                url={testProps.url}
-                price={testProps.price}
-                orderId={testProps.orderId} />
+                name={collectionItemProps.name}
+                url={collectionItemProps.url}
+                price={collectionItemProps.price}
+                orderId={collectionItemProps.orderId} />
         );
         const image = screen.getByRole('img');
         fireEvent.error(image)
@@ -42,10 +42,10 @@ describe('CollectionItem component', () => {
         const testing = jest.spyOn(console, "log");
         render(
             <CollectionItem
-                name={testProps.name}
-                url={testProps.url}
-                price={testProps.price}
-                orderId={testProps.orderId} />
+                name={collectionItemProps.name}
+                url={collectionItemProps.url}
+                price={collectionItemProps.price}
+                orderId={collectionItemProps.orderId} />
         );
         let buttonText = screen.getByText("Buy Now");
         await fireEvent.click(buttonText);
