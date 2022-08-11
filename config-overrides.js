@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 module.exports = function override(config) {
     const fallback = config.resolve.fallback || {};
+    const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
     Object.assign(fallback, {
         "crypto": require.resolve("crypto-browserify"),
         "stream": require.resolve("stream-browserify"),
@@ -17,6 +18,9 @@ module.exports = function override(config) {
             process: 'process/browser',
             Buffer: ['buffer', 'Buffer']
         })
+        // [
+        //     new NodePolyfillPlugin()
+        // ]
     ])
     config.module.rules.push({
         test: /\.m?js/,

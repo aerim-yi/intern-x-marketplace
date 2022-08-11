@@ -1,6 +1,5 @@
-import { Link, ImmutableXClient, ImmutableMethodResults, ERC721TokenType, ETHTokenType, ImmutableRollupStatus  } from '@imtbl/imx-sdk';
+import { Link, ImmutableXClient, ImmutableMethodResults, ERC721TokenType, ImmutableRollupStatus  } from '@imtbl/imx-sdk';
 import { useEffect, useState } from 'react';
-require('dotenv').config();
 
 interface WithdrawNFTProps {
   client: ImmutableXClient,
@@ -115,20 +114,6 @@ const WithdrawNFTFunction = ({client, link, wallet}: WithdrawNFTProps) => {
         </div>
       </div>
       <br/><br/><br/>
-      <div>
-        Withdrawals being prepared:
-        {JSON.stringify(preparingWithdrawals)}
-      </div>
-      <br/><br/>
-      <div>
-        Ready for withdrawal:
-        {JSON.stringify(readyWithdrawals)}
-      </div>
-      <br/><br/>
-      <div>
-        Withdrawn to wallet:
-        {JSON.stringify(completedWithdrawals)}
-      </div>
     </div>
   );
 }
