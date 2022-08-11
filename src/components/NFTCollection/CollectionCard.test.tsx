@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom';
 import CollectionCard from './CollectionCard'
 import placeholderImg from '../../asset/placeholderImg.jpg'
@@ -17,5 +17,16 @@ describe('CollectionCard component', () => {
                 url={testProps.url} />
         );
         expect(container).toMatchSnapshot()
+    })
+
+    test('Load placeholder image on error', () => {
+        render(
+            <CollectionCard
+                name={testProps.name}
+                url={testProps.url} />
+        );
+        const image = screen.getByRole('img');
+        fireEvent.error(image)
+        expect(image).toHaveAttribute('src','placeholderImg.jpg');
     })
 })

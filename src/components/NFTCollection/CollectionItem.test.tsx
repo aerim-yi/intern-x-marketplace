@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react'
+import { render, fireEvent, screen  } from '@testing-library/react'
+import { Link } from '@imtbl/imx-sdk'
 import CollectionItem from './CollectionItem'
 
 const testProps = {
@@ -7,6 +8,9 @@ const testProps = {
     price: 'price',
     orderId: 'orderId',
 }
+
+const linkAddress = 'https://link.ropsten.x.immutable.com';
+const link = new Link(linkAddress);
 
 describe('CollectionItem component', () => {
     test('match snapshot', () => {
@@ -19,4 +23,22 @@ describe('CollectionItem component', () => {
         );
         expect(container).toMatchSnapshot()
     })
+
+    test('Load placeholder image on error', () => {
+        render(
+            <CollectionItem
+                name={testProps.name}
+                url={testProps.url}
+                price={testProps.price}
+                orderId={testProps.orderId} />
+        );
+        const image = screen.getByRole('img');
+        fireEvent.error(image)
+        expect(image).toHaveAttribute('src','placeholderImg.jpg');
+    })
+
+
+
+
+
 })
