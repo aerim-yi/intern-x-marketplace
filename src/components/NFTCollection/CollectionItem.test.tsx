@@ -53,7 +53,4 @@ describe('CollectionItem component', () => {
         expect(testing).toBeCalledTimes(1);
 
     })
-
-
-
 })

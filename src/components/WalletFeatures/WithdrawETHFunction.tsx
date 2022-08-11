@@ -2,13 +2,13 @@ import { Link, ImmutableXClient, ImmutableMethodResults, ETHTokenType, Immutable
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 
-interface WithdrawProps {
+interface WithdrawETHProps {
   client: ImmutableXClient,
   link: Link,
   wallet: string
 }
 
-const WithdrawFunction = ({client, link, wallet}: WithdrawProps) => {
+const WithdrawETHFunction = ({client, link, wallet}: WithdrawETHProps) => {
   // withdrawals
   const [preparingWithdrawals, setPreparingWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
   const [readyWithdrawals, setReadyWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
@@ -75,4 +75,4 @@ const WithdrawFunction = ({client, link, wallet}: WithdrawProps) => {
   );
 }
 
-export default WithdrawFunction;
+export default WithdrawETHFunction;

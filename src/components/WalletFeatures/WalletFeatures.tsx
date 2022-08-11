@@ -1,7 +1,8 @@
 import { Link, ImmutableXClient } from '@imtbl/imx-sdk';
 import { useState } from 'react';
 import DepositFunction from "./DepositFunction";
-import WithdrawFunction from "./WithdrawFunction";
+import WithdrawETHFunction from "./WithdrawETHFunction";
+import WithdrawNFTFunction from './WithdrawNFTFunction';
 
 
 const WalletFeatures = () => {
@@ -15,7 +16,13 @@ const WalletFeatures = () => {
       </div>
       <br></br>
       <div>
-        <WithdrawFunction  
+        <WithdrawETHFunction  
+          client={client}
+          link={link}
+          wallet={wallet}/>
+      </div>
+      <div>
+        <WithdrawNFTFunction  
           client={client}
           link={link}
           wallet={wallet}/>
