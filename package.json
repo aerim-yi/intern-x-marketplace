@@ -67,5 +67,17 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/api/",
+      "<rootDir>/src/index.tsx",
+      "App.tsx",
+      "reportWebVitals.ts"
+    ],
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ]
   }
 }
