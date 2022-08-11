@@ -7,9 +7,9 @@ const ethNetwork = process.env.REACT_APP_ETHNETWORK as EthNetwork
 // Inspired from Immutable Core SDK documentation
 export const getUserAssets = async (user: string): Promise<ListAssetsResponse> => {
     const config = getConfig(ethNetwork);
-    const collectionsApi = new AssetsApi(config.api);
+    const assetApi = new AssetsApi(config.api);
 
-    const response = await collectionsApi.listAssets({
+    const response = await assetApi.listAssets({
         user: user
     })
     return response.data;
