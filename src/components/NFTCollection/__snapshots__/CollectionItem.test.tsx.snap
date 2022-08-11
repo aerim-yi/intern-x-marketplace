@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollectionItem component match snapshot 1`] = `
+<div>
+  <div
+    class="card collections"
+  >
+    <div
+      class="cardWrapper"
+    >
+      <img
+        alt=""
+        data-testid="CollectionItem_Img"
+        src="http.test.com"
+      />
+    </div>
+    <h5
+      class="cardText"
+      data-testid="CollectionItem_Name"
+    >
+      collectionName
+    </h5>
+    <p>
+      Sales Price: 
+      price
+       ETH
+    </p>
+    <button
+      class="btn btn-info"
+      type="button"
+    >
+      Buy Now
+    </button>
+  </div>
+</div>
+`;

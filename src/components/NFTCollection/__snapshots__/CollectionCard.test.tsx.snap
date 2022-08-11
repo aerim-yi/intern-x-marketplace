@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollectionCard component match snapshot 1`] = `
+<div>
+  <div
+    class="card collections"
+  >
+    <div
+      class="cardWrapper"
+    >
+      <img
+        alt=""
+        data-testid="CollectionCard__Img"
+        src="http.test.com"
+      />
+    </div>
+    <h5
+      class="cardText"
+      data-testid="CollectionCard_Name"
+    >
+      collectionName
+    </h5>
+  </div>
+</div>
+`;
