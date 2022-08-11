@@ -37,7 +37,22 @@ describe('CollectionItem component', () => {
         expect(image).toHaveAttribute('src','placeholderImg.jpg');
     })
 
+    test('buyItem errors correctly', async () => {
+        window.open = jest.fn();
+        const testing = jest.spyOn(console, "log");
+        render(
+            <CollectionItem
+                name={testProps.name}
+                url={testProps.url}
+                price={testProps.price}
+                orderId={testProps.orderId} />
+        );
+        let buttonText = screen.getByText("Buy Now");
+        await fireEvent.click(buttonText);
+        expect(testing).toBeCalledWith("link buy error: Error: Unable to open window");
+        expect(testing).toBeCalledTimes(1);
 
+    })
 
 
 
