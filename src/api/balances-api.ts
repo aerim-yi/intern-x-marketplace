@@ -7,9 +7,9 @@ const ethNetwork = process.env.REACT_APP_ETHNETWORK as EthNetwork
 // Inspired from Immutable Core SDK documentation
 export const getUserBalances = async (owner: string): Promise<ListBalancesResponse> => {
     const config = getConfig(ethNetwork);
-    const collectionsApi = new BalancesApi(config.api);
+    const balanceApi = new BalancesApi(config.api);
 
-    const response = await collectionsApi.listBalances({
+    const response = await balanceApi.listBalances({
         owner: owner
     })
     return response.data;

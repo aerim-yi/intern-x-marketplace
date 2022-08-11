@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { AssetCard } from './AssetCard'
 
 const testProps = {
@@ -16,5 +16,17 @@ describe('AssetCard component', () => {
                 src={testProps.src} />
         );
         expect(container).toMatchSnapshot()
+    })
+
+    test('Load placeholder image on error', () => {
+        render(
+            <AssetCard
+                collectionName={testProps.collectionName}
+                itemName={testProps.itemName}
+                src={testProps.src} />
+        );
+        const image = screen.getByRole('img');
+        fireEvent.error(image)
+        expect(image).toHaveAttribute('src', 'placeholderImg.jpg');
     })
 })
