@@ -1,6 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderBar component match snapshot 1`] = `
+exports[`HeaderBar component match snapshot after the wallet address is provided 1`] = `
+<div>
+  <nav
+    class="navbar navbar-expand navbar-dark bg-dark"
+  >
+    <div
+      class="container"
+    >
+      <a
+        href="/"
+        style="text-decoration: none; color: black;"
+      >
+        <span
+          class="navbar-brand"
+        >
+          Intern X Marketplace
+        </span>
+      </a>
+      <div
+        class="btn-group"
+        role="group"
+      >
+        <a
+          href="/asset"
+          style="text-decoration: none; color: black;"
+        >
+          <button
+            class="btn btn-outline-info"
+            type="button"
+          >
+            Asset
+          </button>
+        </a>
+        <a
+          href="/wallet_management"
+          style="text-decoration: none; color: black;"
+        >
+          <button
+            class="btn btn-outline-info"
+            type="button"
+          >
+            Wallet
+          </button>
+        </a>
+        <button
+          class="btn btn-outline-info"
+          type="button"
+        >
+          Disconnect
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
+
+exports[`HeaderBar component match snapshot before the wallet address is provided 1`] = `
 <div>
   <nav
     class="navbar navbar-expand navbar-dark bg-dark"
