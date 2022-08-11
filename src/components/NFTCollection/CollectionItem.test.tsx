@@ -24,7 +24,7 @@ describe('CollectionItem component', () => {
         expect(container).toMatchSnapshot()
     })
 
-    test('Load placeholder image on error', () => {
+    test('load placeholder image on error', () => {
         render(
             <CollectionItem
                 name={testProps.name}
@@ -37,7 +37,7 @@ describe('CollectionItem component', () => {
         expect(image).toHaveAttribute('src','placeholderImg.jpg');
     })
 
-    test('buyItem errors correctly', async () => {
+    test('trigger console log if buyItem times out', async () => {
         window.open = jest.fn();
         const testing = jest.spyOn(console, "log");
         render(
@@ -53,7 +53,4 @@ describe('CollectionItem component', () => {
         expect(testing).toBeCalledTimes(1);
 
     })
-
-
-
 })

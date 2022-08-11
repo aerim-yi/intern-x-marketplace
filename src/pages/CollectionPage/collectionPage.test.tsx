@@ -58,7 +58,3 @@ describe('Collection page', () => {
     })
 
 })
-
-
-
-// <CollectionCard name={item.name} url={item.collection_image_url || placeholderImg} />
