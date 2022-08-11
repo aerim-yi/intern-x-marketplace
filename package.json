@@ -31,7 +31,7 @@
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "jest",
+    "test": "react-app-rewired test --coverage a",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
