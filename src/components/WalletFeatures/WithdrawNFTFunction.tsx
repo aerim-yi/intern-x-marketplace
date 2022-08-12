@@ -118,7 +118,7 @@ const WithdrawNFT = ({client, link, wallet}: WithdrawNFTProps) => {
           <strong>Token Address:</strong>
             <input type="text" value={completeTokenAddress} onChange={e => setCompleteTokenAddress(e.target.value)} />
           </label>
-          <Button style={{ marginRight: '15px' }} variant='info' onClick={completeWithdrawalNFT}>Complete NFT Withdrawa</Button>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={completeWithdrawalNFT}>Complete NFT Withdrawal</Button>
         </div>
       </div>
       <br/><br/><br/>
