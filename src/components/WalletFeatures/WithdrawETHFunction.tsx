@@ -8,7 +8,7 @@ interface WithdrawETHProps {
   wallet: string
 }
 
-const WithdrawETHFunction = ({client, link, wallet}: WithdrawETHProps) => {
+const WithdrawETH = ({client, link, wallet}: WithdrawETHProps) => {
   // withdrawals
   const [preparingWithdrawals, setPreparingWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
   const [readyWithdrawals, setReadyWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
@@ -75,4 +75,4 @@ const WithdrawETHFunction = ({client, link, wallet}: WithdrawETHProps) => {
   );
 }
 
-export default WithdrawETHFunction;
+export default WithdrawETH;

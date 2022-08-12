@@ -8,16 +8,21 @@ interface WithdrawNFTProps {
   wallet: string
 }
 
-const WithdrawNFTFunction = ({client, link, wallet}: WithdrawNFTProps) => {
+const WithdrawNFT = ({client, link, wallet}: WithdrawNFTProps) => {
   // withdrawals
   const [preparingWithdrawals, setPreparingWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
   const [readyWithdrawals, setReadyWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
   const [completedWithdrawals, setCompletedWithdrawals] = useState<ImmutableMethodResults.ImmutableGetWithdrawalsResult>(Object);
   // nft
+  // For depositing NFT TokenId, TokenAddress
   const [depositTokenId, setDepositTokenId] = useState('');
   const [depositTokenAddress, setDepositTokenAddress] = useState('');
+
+  // For preparing NFT TokenId, TokenAddress
   const [prepareTokenId, setPrepareTokenId] = useState('');
   const [prepareTokenAddress, setPrepareTokenAddress] = useState('');
+
+  // For completing NFT TokenId, TokenAddress
   const [completeTokenId, setCompleteTokenId] = useState('');
   const [completeTokenAddress, setCompleteTokenAddress] = useState('');
 
@@ -121,4 +126,4 @@ const WithdrawNFTFunction = ({client, link, wallet}: WithdrawNFTProps) => {
   );
 }
 
-export default WithdrawNFTFunction;
+export default WithdrawNFT;
