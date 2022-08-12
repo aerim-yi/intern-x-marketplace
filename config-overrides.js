@@ -17,6 +17,9 @@ module.exports = function override(config) {
             process: 'process/browser',
             Buffer: ['buffer', 'Buffer']
         })
+        // [
+        //     new NodePolyfillPlugin()
+        // ]
     ])
     config.module.rules.push({
         test: /\.m?js/,
