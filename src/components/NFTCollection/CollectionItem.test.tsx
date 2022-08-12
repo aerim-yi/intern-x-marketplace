@@ -49,8 +49,6 @@ describe('CollectionItem component', () => {
         );
         let buttonText = screen.getByText("Buy Now");
         await fireEvent.click(buttonText);
-        expect(testing).toBeCalledWith("link buy error: Error: Unable to open window");
         expect(testing).toBeCalledTimes(1);
-
     })
 })

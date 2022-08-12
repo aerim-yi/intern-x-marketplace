@@ -1,5 +1,6 @@
 import { Link, ImmutableXClient, ImmutableMethodResults, ERC721TokenType, ImmutableRollupStatus  } from '@imtbl/imx-sdk';
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 interface WithdrawNFTProps {
   client: ImmutableXClient,
@@ -70,47 +71,49 @@ const WithdrawNFTFunction = ({client, link, wallet}: WithdrawNFTProps) => {
   return (
     <div>
       <div>
-        ERC721:
+        <br />
+        <h3><strong>NFT Withdrawal Flow:</strong></h3>
+        <br />
         <div>
-          Deposit NFT:
+          <h3><strong>Deposit NFT</strong></h3>
           <br/>
           <label>
-            Token ID:
+          <strong>Token ID:</strong>
             <input type="text" value={depositTokenId} onChange={e => setDepositTokenId(e.target.value)} />
           </label>
           <label>
-            Token Address:
+          <strong>Token Address:</strong>
             <input type="text" value={depositTokenAddress} onChange={e => setDepositTokenAddress(e.target.value)} />
           </label>
-          <button onClick={depositNFT}>Deposit NFT</button>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={depositNFT}>Deposit NFT</Button>
         </div>
-        <br/><br/>
+        <br/>
         <div>
-          Prepare NFT for withdrawal (submit to be rolled up and confirmed on chain in the next batch):
-          <br/>
+        <h3><strong>Prepare NFT Withdrawal</strong></h3> 
+        <p>(submit to be rolled up and confirmed on chain in next batch):</p>
           <label>
-            Token ID:
+          <strong>Token ID:</strong>
             <input type="text" value={prepareTokenId} onChange={e => setPrepareTokenId(e.target.value)} />
           </label>
           <label>
-            Token Address:
+          <strong>Token Address:</strong>
             <input type="text" value={prepareTokenAddress} onChange={e => setPrepareTokenAddress(e.target.value)} />
           </label>
-          <button onClick={prepareWithdrawalNFT}>Prepare NFT Withdrawal</button>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={prepareWithdrawalNFT}>Prepare NFT Withdrawal</Button>
         </div>
-        <br/><br/>
+        <br/>
         <div>
-          Complete NFT withdrawal (withdraws single NFT that is ready for withdrawal to L1 wallet):
-          <br/>
+        <h3><strong>Complete NFT withdrawal</strong></h3>  
+        <p>(withdraws single NFT ready for withdrawal to L1 wallet):</p>
           <label>
-            Token ID:
+          <strong>Token ID:</strong>
             <input type="text" value={completeTokenId} onChange={e => setCompleteTokenId(e.target.value)} />
           </label>
           <label>
-            Token Address:
+          <strong>Token Address:</strong>
             <input type="text" value={completeTokenAddress} onChange={e => setCompleteTokenAddress(e.target.value)} />
           </label>
-          <button onClick={completeWithdrawalNFT}>Complete NFT Withdrawal</button>
+          <Button style={{ marginRight: '15px' }} variant='info' onClick={completeWithdrawalNFT}>Complete NFT Withdrawa</Button>
         </div>
       </div>
       <br/><br/><br/>

@@ -55,7 +55,7 @@ const WithdrawETHFunction = ({client, link, wallet}: WithdrawETHProps) => {
     <div>
       <div>
         <div>
-        <h3><strong>Prepare Withdraw</strong></h3>
+        <h3><strong>Prepare ETH Withdraw</strong></h3>
           <p>(submit to be rolled up and confirmed on chain in the next batch):</p>
           <label>
           <strong>Amount (ETH)</strong>:
