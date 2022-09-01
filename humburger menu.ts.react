@@ -1,0 +1,33 @@
+import { useEffect, RefObject } from "react";
+
+const useOnClickOutside = (
+  ref: RefObject<HTMLDivElement>,
+  closeMenu: () => void
+) => {
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      if (ref.current && event.target &&
+        ref.current.contains(event.target as Node)
+      ) {
+        return;
+      }
+      closeMenu();
+    };
+    
+    document.addEventListener("mousedown", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+    };
+  }, [ref, closeMenu]);
+};
+const Menu = (props: Props) => {
+  const [open, setOpen] = useState<boolean>(false);
+  
+  const node = useRef<HTMLDivElement>(null);
+  useOnClickOutside(node, () => props.setOpen(false));
+  return (
+    <div ref={node}>
+      ....
+    </div>
+  );
+};
