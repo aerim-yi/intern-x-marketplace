@@ -10,7 +10,7 @@ export const HeaderBar: React.FC = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Hamburger open={true}/>
+                <Hamburger open={true} />
 
                 <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }}>
                     <Navbar.Brand>Intern X Marketplace</Navbar.Brand>
