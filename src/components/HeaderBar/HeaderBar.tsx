@@ -1,22 +1,24 @@
-import { Navbar, Container, ButtonGroup, Button } from 'react-bootstrap';
+import { Navbar, Container, ButtonGroup, Button, useAccordionButton } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
 import { useWalletHook } from '../NavBar/useWallethook';
 import { Hamburger } from '../HumburgerMenu/HumburgerMenu';
+import { useState } from 'react';
 
 export const HeaderBar: React.FC = () => {
     const history = useHistory();
     const wallet = useWalletHook();
+    const HumburgerMenu = useState();
 
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Hamburger open={true} />
 
                 <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }}>
                     <Navbar.Brand>Intern X Marketplace</Navbar.Brand>
                 </Link>
                 {wallet?.walletInfo?.address &&
                     <ButtonGroup>
+                        <Hamburger open={true} />
                         <Link to={'/asset'} style={{ textDecoration: 'none', color: 'black' }}>
                             <Button variant="outline-info">Asset</Button>
                         </Link>

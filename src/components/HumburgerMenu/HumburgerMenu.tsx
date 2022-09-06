@@ -43,9 +43,9 @@ export const Hamburger = (props: Props) => (
   <div className="humburger"
     onClick={() => props.setOpen?.(!props.open)}
   >
-    <div>ASSET</div>
-    <div>BALANCE</div>
-    <div>WALLET</div>
+    <div>Asset</div>
+    <div>Balance</div>
+    <div>Wallet</div>
 
   </div>
 );
