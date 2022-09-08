@@ -1,6 +1,5 @@
 import { useEffect, RefObject, useState, useRef } from "react";
 import "./Humburger.css"
-
 const useOnClickOutside = (
   ref: RefObject<HTMLDivElement>,
   closeMenu: () => void
@@ -14,22 +13,18 @@ const useOnClickOutside = (
       }
       closeMenu();
     };
-
     document.addEventListener("mousedown", listener);
     return () => {
       document.removeEventListener("mousedown", listener);
     };
   }, [ref, closeMenu]);
 };
-
 type Props = {
   open: boolean;
   setOpen?: (v: boolean) => void;
 };
-
 const Menu = (props: Props) => {
   const [open, setOpen] = useState<boolean>(false);
-
   const node = useRef<HTMLDivElement>(null);
   useOnClickOutside(node, () => props.setOpen?.(false));
   return (
@@ -38,7 +33,6 @@ const Menu = (props: Props) => {
     </div>
   );
 };
-
 export const Hamburger = (props: Props) => (
   <div className="humburger"
     onClick={() => props.setOpen?.(!props.open)}
@@ -46,6 +40,5 @@ export const Hamburger = (props: Props) => (
     <div>Asset</div>
     <div>Balance</div>
     <div>Wallet</div>
-
   </div>
 );
