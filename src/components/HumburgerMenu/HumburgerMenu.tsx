@@ -23,16 +23,9 @@ type Props = {
   open: boolean;
   setOpen?: (v: boolean) => void;
 };
-const Menu = (props: Props) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const node = useRef<HTMLDivElement>(null);
-  useOnClickOutside(node, () => props.setOpen?.(false));
-  return (
-    <div ref={node}>
+    <div ref={'node'}>
       ....
     </div>
-  );
-};
 export const Hamburger = (props: Props) => (
   <div className="humburger"
     onClick={() => props.setOpen?.(!props.open)}
